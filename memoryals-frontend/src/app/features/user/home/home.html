@@ -1,0 +1,174 @@
+<main class="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Tu tranquilidad, nuestra misión</h1>
+      <p class="subtitle">
+        Brindamos asistencia humana y respaldo financiero para que vos y tu familia estén protegidos hoy y seguros mañana.
+      </p>
+      <div class="hero-buttons">
+        <a href="#planes" class="btn">Ver Planes</a>
+        <a href="#contacto" class="btn-secondary">Contáctanos</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="assets/hero-family.jpg" alt="Familia protegida y feliz">
+    </div>
+  </section>
+
+  <!-- PRESENTACIÓN -->
+  <section class="presentacion section">
+    <div class="container two-col">
+      <div class="text">
+        <h2>¿Quiénes somos?</h2>
+        <p>
+          Memoryals nace con la misión de acompañar a las familias en los momentos más sensibles de la vida,
+          ofreciendo <strong>planes accesibles</strong> y un <strong>fondo de ahorro</strong> que asegura
+          cuidado, respeto y tranquilidad.
+        </p>
+        <p>
+          Nuestro compromiso es unir la asistencia humana con la previsión financiera, para que cada memoria
+          y cada familia cuenten con respaldo real y sostenible.
+        </p>
+      </div>
+      <div class="image">
+        <img src="assets/team.jpg" alt="Nuestro equipo de trabajo">
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN & VISIÓN -->
+  <section class="mision-vision section alt">
+    <div class="container grid">
+      <div class="card">
+        <img src="assets/icon-mision.svg" alt="Misión">
+        <h3>Misión</h3>
+        <p>
+          Proporcionar asistencia humana y personalizada, garantizando respaldo en las situaciones más
+          importantes y ofreciendo alternativas de ahorro seguras.
+        </p>
+      </div>
+      <div class="card">
+        <img src="assets/icon-vision.svg" alt="Visión">
+        <h3>Visión</h3>
+        <p>
+          Ser referentes en Argentina en asistencia y protección familiar, destacándonos por confianza,
+          empatía y accesibilidad.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="valores section">
+    <h2>Nuestros Valores</h2>
+    <div class="grid">
+      <div class="valor-card">🤝 Respeto</div>
+      <div class="valor-card">🌍 Accesibilidad</div>
+      <div class="valor-card">📢 Transparencia</div>
+      <div class="valor-card">🛡️ Confianza</div>
+      <div class="valor-card">💰 Previsión y Ahorro</div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios section alt">
+    <h2>Servicios</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="assets/service-plan.svg" alt="Planes personalizados">
+        <h3>Planes Personalizados</h3>
+        <p>Adaptados a cada necesidad económica y familiar.</p>
+      </div>
+      <div class="card">
+        <img src="assets/service-human.svg" alt="Acompañamiento humano">
+        <h3>Acompañamiento Humano</h3>
+        <p>Atención empática en los momentos más importantes.</p>
+      </div>
+      <div class="card">
+        <img src="assets/service-savings.svg" alt="Fondo de ahorro">
+        <h3>Fondo de Ahorro</h3>
+        <p>Construí un capital con aportes mensuales y rescates parciales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section id="planes" class="planes section">
+    <h2>Nuestros Planes</h2>
+    <div class="grid">
+      <div class="plan-card" *ngFor="let plan of planes">
+        <h3>{{ plan.nombre }}</h3>
+        <p><strong>Edades:</strong> {{ plan.edadMin }} - {{ plan.edadMax }}</p>
+        <ul>
+          <li *ngFor="let precio of plan.PrecioCoutas">
+            💵 {{ precio | currency:'ARS' }}
+          </li>
+        </ul>
+        <button class="btn">Contratar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios section alt">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <div class="grid">
+      <div class="testimonial">
+        <p>"Gracias a Memoryals pudimos estar tranquilos en un momento difícil. El acompañamiento fue increíble."</p>
+        <span>- Laura, Buenos Aires</span>
+      </div>
+      <div class="testimonial">
+        <p>"El plan de ahorro me permitió proyectar con seguridad. Es un servicio distinto a todo lo que conocía."</p>
+        <span>- Martín, Córdoba</span>
+      </div>
+      <div class="testimonial">
+        <p>"La atención humana marca la diferencia. No son solo números, son personas que acompañan."</p>
+        <span>- Susana, Mendoza</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-item">
+      <h3>¿Qué pasa si dejo de pagar?</h3>
+      <p>Podés rescatar el capital acumulado bajo condiciones establecidas o reactivar tu plan sin perder la antigüedad.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Las cuotas aumentan con el tiempo?</h3>
+      <p>No, las cuotas son claras y previsibles, pensadas para tu tranquilidad.</p>
+    </div>
+    <div class="faq-item">
+      <h3>¿Puedo contratar si soy joven?</h3>
+      <p>Sí, tenemos planes para todas las edades y la posibilidad de construir un fondo de ahorro desde temprano.</p>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" class="contacto section alt">
+    <h2>Contacto</h2>
+    <p>Estamos disponibles en WhatsApp, redes sociales y en nuestra página web.</p>
+    <form class="contact-form">
+      <input type="text" placeholder="Tu nombre">
+      <input type="email" placeholder="Tu correo">
+      <textarea placeholder="Tu mensaje"></textarea>
+      <button class="btn">Enviar</button>
+    </form>
+    <div class="social-links">
+      <a href="#">WhatsApp</a>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <h2>Protegé tu futuro hoy</h2>
+    <p>Con Memoryals, tu familia tiene respaldo y vos tenés tranquilidad.</p>
+    <a href="#planes" class="btn">Conocer Planes</a>
+  </section>
+
+</main>
