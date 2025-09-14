@@ -1,0 +1,131 @@
+/* Fondo general */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 🎨 Fondo degradado con tonos verdes y beige */
+  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
+  background-attachment: fixed;
+
+  /* Textura suave para que no sea plano */
+  background-image: radial-gradient(circle at top left, rgba(47, 79, 79, 0.1), transparent 40%),
+                    radial-gradient(circle at bottom right, rgba(35, 66, 63, 0.15), transparent 50%);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Caja principal */
+.login-box {
+  width: 350px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.8); /* translúcido */
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  color: #23423f;
+  position: relative;
+}
+
+/* Avatar */
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #23423f; /* verde oscuro del logo */
+  border: 3px solid #fdfcf7; /* beige claro */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -80px auto 20px;
+  font-size: 32px;
+  color: #fdfcf7;
+}
+
+/* Título */
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #23423f;
+}
+
+.register-link {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #23423f;
+}
+.register-link a {
+  color: #2f5233;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.register-link a:hover {
+  color: #000;
+}
+
+
+/* Inputs */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(207, 232, 207, 0.6); /* verde claro translúcido */
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #a8c3a1; /* borde sutil */
+}
+
+.input-group i {
+  margin-right: 10px;
+  color: #23423f;
+}
+
+.input-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  color: #23423f;
+  font-size: 14px;
+}
+
+/* Opciones */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+  color: #23423f;
+}
+
+.options a {
+  color: #2f5233;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.options a:hover {
+  color: #000;
+}
+
+/* Botón */
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2f5233; /* verde oscuro */
+  color: #fdfcf7; /* beige claro */
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-login:hover {
+  background: #1e3922;
+  transform: scale(1.02);
+}

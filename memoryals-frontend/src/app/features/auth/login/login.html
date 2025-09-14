@@ -1,0 +1,36 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="avatar">
+      <i class="fas fa-user"></i>
+    </div>
+
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" placeholder="Email ID" formControlName="email">
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" placeholder="Password" formControlName="password">
+      </div>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" formControlName="remember"> Remember me
+        </label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn-login">LOGIN</button>
+    </form>
+
+    <!-- 🔹 Link a registro -->
+    <p class="register-link">
+      ¿No tenés cuenta?
+      <a routerLink="/register">Crear cuenta</a>
+    </p>
+  </div>
+</div>

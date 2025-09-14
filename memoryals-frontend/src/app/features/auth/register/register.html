@@ -1,0 +1,80 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="avatar">
+      <i class="fas fa-user-plus"></i>
+    </div>
+      <!-- Mensajes globales -->
+    <div *ngIf="errorMessage" class="alert alert-error">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+
+    <!-- Paso 1: Registro -->
+    <div *ngIf="!isCodeStep">
+      <h2>Crear cuenta</h2>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" placeholder="Nombre completo" formControlName="nombre">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input type="email" placeholder="Email" formControlName="email">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" placeholder="Contraseña" formControlName="password">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-id-card"></i>
+          <input type="text" placeholder="DNI" formControlName="dni">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" placeholder="Dirección" formControlName="direccion">
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-phone"></i>
+          <input type="text" placeholder="Teléfono" formControlName="telefono">
+        </div>
+
+        <button type="submit" class="btn-login">REGISTRARSE</button>
+      </form>
+
+      <p class="register-link">
+        ¿Ya tenés cuenta?
+        <a routerLink="/login">Iniciar sesión</a>
+      </p>
+    </div>
+
+    <!-- Paso 2: Confirmación con código -->
+    <div *ngIf="isCodeStep">
+      <h2>Confirmar cuenta</h2>
+      <p>Ingresá el código de verificación que enviamos a tu email:</p>
+
+      <form [formGroup]="codeForm" (ngSubmit)="onVerifyCode()">
+        <div class="input-group">
+          <i class="fas fa-key"></i>
+          <input type="text" placeholder="Código de verificación" formControlName="token">
+        </div>
+
+        <button type="submit" class="btn-login">CONFIRMAR</button>
+      </form>
+    </div>
+
+    <!-- Mensaje de éxito -->
+    <div *ngIf="isVerified">
+      <h2>✅ Cuenta confirmada</h2>
+      <p>Tu cuenta fue verificada correctamente.</p>
+      <a routerLink="/login" class="btn-login">Iniciar sesión</a>
+    </div>
+  </div>
+</div>

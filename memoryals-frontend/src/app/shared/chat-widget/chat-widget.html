@@ -1,0 +1,35 @@
+<!-- Botón flotante (solo si hay usuario logueado) -->
+<div *ngIf="user" class="chat-button" (click)="toggleChat()">
+  💬
+</div>
+
+<!-- Ventana de chat -->
+<div class="chat-window" *ngIf="isOpen && user">
+  <div class="chat-header">
+    <span>Asistente Memoryals 🤖</span>
+    <div class="actions">
+      <button (click)="borrarHistorial()">🗑️</button>
+      <button (click)="toggleChat()">✖</button>
+    </div>
+  </div>
+
+  <div class="chat-messages">
+    <div *ngFor="let msg of messages" [ngClass]="msg.role">
+      <span>{{ msg.content }}</span>
+      <small class="timestamp" *ngIf="msg.timestamp">
+        {{ msg.timestamp | date:'short' }}
+      </small>
+    </div>
+    <div *ngIf="loading" class="assistant">Escribiendo...</div>
+  </div>
+
+  <div class="chat-input">
+    <input
+      [(ngModel)]="newMessage"
+      (keydown.enter)="sendMessage()"
+      placeholder="Escribe tu mensaje..."
+    />
+    <button (click)="sendMessage()">➤</button>
+  </div>
+</div>
+

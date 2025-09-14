@@ -1,0 +1,145 @@
+/* Fondo general */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
+  background-attachment: fixed;
+
+  background-image: radial-gradient(circle at top left, rgba(47, 79, 79, 0.1), transparent 40%),
+                    radial-gradient(circle at bottom right, rgba(35, 66, 63, 0.15), transparent 50%);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Caja principal */
+.login-box {
+  width: 380px;
+  padding: 40px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  color: #23423f;
+  position: relative;
+  animation: fadeIn 0.6s ease;
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Avatar */
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: #23423f;
+  border: 3px solid #fdfcf7;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -80px auto 20px;
+  font-size: 32px;
+  color: #fdfcf7;
+}
+
+/* Título */
+h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #23423f;
+}
+
+/* Inputs */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(207, 232, 207, 0.6);
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #a8c3a1;
+  transition: transform 0.2s;
+}
+
+.input-group:hover {
+  transform: scale(1.02);
+}
+
+.input-group i {
+  margin-right: 10px;
+  color: #23423f;
+}
+
+.input-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  color: #23423f;
+  font-size: 14px;
+}
+
+/* Botones */
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #2f5233;
+  color: #fdfcf7;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn-login:hover {
+  background: #1e3922;
+  transform: scale(1.02);
+}
+
+/* Link abajo */
+.register-link {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #23423f;
+}
+
+.register-link a {
+  color: #2f5233;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.register-link a:hover {
+  color: #000;
+}
+
+/* Caja de verificación */
+.verification-box {
+  display: none;
+}
+
+.verification-box.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Mensaje de éxito */
+.success-message {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2f5233;
+  padding: 15px;
+  border-radius: 10px;
+  background: #e8f5e1;
+  border: 1px solid #a8c3a1;
+  animation: fadeIn 0.6s ease;
+}

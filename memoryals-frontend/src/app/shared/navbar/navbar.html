@@ -6,22 +6,36 @@
       <img src="logo.png" alt="Memoryal Logo">
     </div>
 
-    <!-- Menú toggle (solo mobile) -->
-    <div class="menu-toggle" id="menu-toggle">
+    <!-- Menú toggle (mobile) -->
+    <div class="menu-toggle" id="menu-toggle" (click)="toggleMenu()">
       <span></span>
       <span></span>
       <span></span>
     </div>
 
-    <!-- Links + Login -->
-    <div class="nav-right" id="nav-right">
+    <!-- Links + Login/Usuario -->
+    <div class="nav-right" [class.show]="isMenuOpen">
       <div class="nav-links">
-        <a href="#">Inicio</a>
-        <a href="#">Planes</a>
-        <a href="#">Nosotros</a>
+        <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+        <a routerLink="/planes" routerLinkActive="active">Planes</a>
+        <a routerLink="/nosotros" routerLinkActive="active">Nosotros</a>
       </div>
-      <div class="nav-actions">
-        <a href="/login" class="btn-login">Login</a>
+
+      <!-- Si NO hay usuario -->
+      <div class="nav-actions" *ngIf="!user">
+        <a routerLink="/login" routerLinkActive="active" class="btn-login">Login</a>
+      </div>
+
+      <!-- Si HAY usuario -->
+      <div class="nav-actions user-dropdown" *ngIf="user">
+        <button class="user-btn" (click)="toggleDropdown()">
+          👤 {{ user.name }}
+          <span class="arrow" [class.open]="isDropdownOpen">▼</span>
+        </button>
+        <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+          <li><a routerLink="/mi-cuenta">Mi cuenta</a></li>
+          <li><a (click)="logout()">Salir</a></li>
+        </ul>
       </div>
     </div>
 
