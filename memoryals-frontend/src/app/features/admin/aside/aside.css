@@ -1,0 +1,67 @@
+/* Sidebar lateral */
+.sidebar {
+  position: relative;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 0 20px 20px 0;
+  padding: 25px 20px;
+  box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.2);
+  color: #23423f;
+  font-family: "Segoe UI", sans-serif;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: slideIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* Animación al entrar */
+@keyframes slideIn {
+  from { opacity: 0; transform: translate(-50%, -50%); }
+  to { opacity: 1; transform: translateY(-50%); }
+}
+
+/* Título */
+.sidebar-title {
+  font-size: 1.4em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 5px #23423f44;
+}
+
+/* Navegación */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-nav a {
+  padding: 12px 16px;
+  background: rgba(207, 232, 207, 0.25);
+  border: 1px solid #a8c3a1;
+  border-radius: 12px;
+  color: #23423f;
+  font-size: 1em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(47, 82, 51, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Activo */
+.sidebar-nav a.active {
+  background: #2f5233;
+  color: #fdfcf7;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

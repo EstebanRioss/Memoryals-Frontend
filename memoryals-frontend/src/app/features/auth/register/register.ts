@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { Auth } from '../../../core/services/auth';
+import { Auth } from '../../../core/services/usuario/auth';
 
 @Component({
   selector: 'app-register',

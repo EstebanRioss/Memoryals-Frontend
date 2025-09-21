@@ -1,0 +1,57 @@
+<div class="pagos-card" *ngIf="pagos">
+  <h2 class="section-title">Mis Pagos</h2>
+
+  <!-- Pago actual -->
+  <div class="pago-actual" *ngIf="pagoActual">
+    <h3>Pago de este mes</h3>
+    <p><strong>Mes:</strong> {{ pagoActual.mes }}/{{ pagoActual.anio }}</p>
+    <p><strong>Monto:</strong> ${{ pagoActual.monto }}</p>
+    <p><strong>Estado:</strong>
+      <span [ngClass]="{
+        'estado-pendiente': pagoActual.estado === 'pendiente',
+        'estado-pagada': pagoActual.estado === 'pagada',
+        'estado-rechazada': pagoActual.estado === 'rechazada',
+        'estado-vencida': pagoActual.estado === 'vencida'
+      }">{{ pagoActual.estado }}</span>
+    </p>
+
+    <button *ngIf="pagoActual.estado === 'pendiente'" class="btn primary" (click)="pagar(pagoActual)">
+      Pagar ahora
+    </button>
+
+    <!-- Mostrar QR y link en una sola línea -->
+    <div class="qr-container" *ngIf="mostrarQr">
+      <h3>Escanea este QR o clickea el link para pagar</h3>
+      <img [src]="qrBase64" alt="QR Code">
+      <p>
+        <a [href]="pagoLink" target="_blank">Ir al pago</a>
+      </p>
+      <button class="btn secondary" (click)="cerrarQR()">Cerrar QR</button>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Historial -->
+  <div class="historial">
+    <h3>Historial de pagos</h3>
+    <table class="tabla-pagos">
+      <thead>
+        <tr>
+          <th>Mes/Año</th>
+          <th>Monto</th>
+          <th>Estado</th>
+          <th>Fecha de pago</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagos">
+          <td>{{ pago.mes }}/{{ pago.anio }}</td>
+          <td>${{ pago.monto }}</td>
+          <td>{{ pago.estado }}</td>
+          <td>{{ pago.fechaPago ? (pago.fechaPago | date:'dd/MM/yyyy') : '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

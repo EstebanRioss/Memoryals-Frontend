@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 
 export interface LoginResponse {
   message: string;
@@ -15,7 +16,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class Auth {
-  private apiUrl = 'http://localhost:3000/api/users'; // Cambiar por tu URL real
+  private apiUrl = environment.apiUrl + '/users';
 
   private authStatus = new BehaviorSubject<boolean>(this.hasToken());
   private currentUserSubject = new BehaviorSubject<any>(this.getStoredUser());

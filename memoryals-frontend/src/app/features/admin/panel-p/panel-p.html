@@ -1,0 +1,60 @@
+<div class="profile-page">
+  <div class="profile-card">
+    <h2 class="section-title">Panel de Pagos</h2>
+
+    <div *ngIf="loading" class="spinner"></div>
+    <div *ngIf="error" class="alert error">{{ error }}</div>
+
+    <table *ngIf="pagos.length" class="table-users">
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Plan</th>
+          <th>Mes/Año</th>
+          <th>Monto</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagos">
+          <td>{{ pago.usuario.nombre }}</td>
+          <td>{{ pago.plan.nombre }}</td>
+          <td>{{ pago.mes }}/{{ pago.anio }}</td>
+          <td>{{ pago.monto | currency:'ARS' }}</td>
+          <td>{{ pago.estado }}</td>
+          <td>
+            <button class="btn secondary" (click)="editarPago(pago)">Editar</button>
+            <button class="btn secondary" (click)="eliminarPago(pago._id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!loading && pagos.length === 0" class="alert">
+      No hay pagos registrados
+    </div>
+  </div>
+</div>
+
+<!-- Modal de edición -->
+<div class="modal" *ngIf="modalVisible">
+  <div class="modal-content">
+    <h3>Editar Pago</h3>
+
+    <label>Estado:</label>
+    <select [(ngModel)]="pagoSeleccionado.estado">
+      <option value="pendiente">Pendiente</option>
+      <option value="pagada">Pagada</option>
+      <option value="rechazada">Rechazada</option>
+    </select>
+
+    <label>Método de Pago:</label>
+    <input [(ngModel)]="pagoSeleccionado.metodoPago" type="text" />
+
+    <div class="modal-actions">
+      <button class="btn primary" (click)="guardarPago()">Guardar</button>
+      <button class="btn secondary" (click)="cerrarModal()">Cancelar</button>
+    </div>
+  </div>
+</div>

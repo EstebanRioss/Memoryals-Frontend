@@ -34,11 +34,16 @@
           👤 {{ user.nombre }}
           <span class="arrow" [class.open]="isDropdownOpen">▼</span>
         </button>
-        <ul class="dropdown-menu" [class.show]="isDropdownOpen">
-          <!-- Enviamos el id del usuario en la ruta -->
-          <li><a [routerLink]="['/mi-cuenta', user._id]">Mi cuenta</a></li>
-          <li><a (click)="logout()">Salir</a></li>
-        </ul>
+          <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'cliente'">
+            <!-- Enviamos el id del usuario en la ruta -->
+            <li><a [routerLink]="['/mi-cuenta', user._id]">Mi cuenta</a></li>
+            <li><a [routerLink]="['/mis-cuotas', user._id]">Mis cuotas</a></li>
+            <li><a (click)="logout()">Salir</a></li>
+          </ul>
+          <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'admin'">
+            <li><a [routerLink]="['/admin']">Panel de Administración</a></li>
+            <li><a (click)="logout()">Salir</a></li>
+          </ul>
       </div>
     </div>
 

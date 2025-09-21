@@ -1,0 +1,271 @@
+/* Fondo general de la página */
+.pagos-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
+  background-attachment: fixed;
+  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+  animation: fadeInPage 1s ease forwards;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Animación fade-in de la página */
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card principal centrada */
+.pagos-card {
+  background: rgba(255, 255, 255, 0.85);
+  margin-bottom: 20px;
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  color: #23423f;
+  font-family: "Segoe UI", sans-serif;
+  width: 1200px;
+  margin-top: 10px;
+  margin-left: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.95);
+  opacity: 0;
+  animation: cardPop 0.5s ease forwards 0.3s;
+}
+
+/* Animación pop al cargar card */
+@keyframes cardPop {
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Título de sección */
+.pagos-card h2.section-title {
+  font-size: 2em;
+  font-weight: 700;
+  color: #23423f;
+  text-align: center;
+  text-shadow: 0 0 5px #23423f44;
+  margin-bottom: 10px;
+  animation: titleSlide 0.5s ease forwards 0.5s;
+  opacity: 0;
+}
+
+@keyframes titleSlide {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pago actual destacado */
+.pago-actual {
+  background: rgba(207, 232, 207, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: inset 0 0 0 1px rgba(47, 82, 51, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pago-actual h3 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #23423f;
+  margin-bottom: 8px;
+}
+
+/* Estados de pago */
+.estado-pendiente {
+  color: #f0a500;
+  font-weight: 600;
+}
+
+.estado-pagada {
+  color: #2f5233;
+  font-weight: 600;
+}
+
+.estado-rechazada {
+  color: #900;
+  font-weight: 600;
+}
+
+.estado-vencida {
+  color: #b00;
+  font-weight: 600;
+}
+
+/* Historial */
+.historial {
+  background: rgba(207, 232, 207, 0.15);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: inset 0 0 0 1px rgba(47, 82, 51, 0.2);
+}
+
+.historial h3 {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #23423f;
+  margin-bottom: 10px;
+}
+
+.tabla-pagos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-pagos th, .tabla-pagos td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #a8c3a1;
+  font-size: 0.95em;
+}
+
+.tabla-pagos th {
+  background: rgba(47, 82, 51, 0.1);
+  font-weight: 600;
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid #a8c3a1;
+  margin: 20px 0;
+}
+
+/* Botón pagar ahora */
+.btn.primary {
+  background: #2f5233;
+  color: #fdfcf7;
+  border: none;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn.primary:hover {
+  background: #1e3922;
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Scroll interno */
+.pagos-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.pagos-card::-webkit-scrollbar-thumb {
+  background: rgba(47, 82, 51, 0.4);
+  border-radius: 4px;
+}
+
+.pagos-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .pagos-card { width: 90%; padding: 25px 20px; gap: 20px; }
+  .historial { padding: 18px; }
+  .tabla-pagos th, .tabla-pagos td { padding: 8px 10px; font-size: 0.9em; }
+  .pago-actual h3 { font-size: 1.3em; }
+  .btn.primary { padding: 10px 15px; font-size: 0.95em; }
+}
+
+@media (max-width: 480px) {
+  .pagos-card { padding: 20px 15px; gap: 15px; }
+  .section-title { font-size: 1.6em; }
+  .pago-actual h3 { font-size: 1.2em; }
+  .tabla-pagos th, .tabla-pagos td { font-size: 0.85em; }
+  .btn.primary { padding: 9px 12px; font-size: 0.9em; }
+}
+/* QR Container */
+.qr-container {
+  margin-top: 20px;
+  background: rgba(47, 82, 51, 0.05);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  animation: qrFadeIn 0.5s ease forwards;
+}
+
+/* Animación para que aparezca suavemente */
+@keyframes qrFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* QR Box */
+.qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fdfcf7;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* QR image */
+.qr-image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 2px solid #2f5233;
+}
+
+/* Link de pago */
+.qr-link a {
+  display: inline-block;
+  background: #2f5233;
+  color: #fdfcf7;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.qr-link a:hover {
+  background: #1e3922;
+  transform: scale(1.05);
+}
+
+/* Botón cerrar QR */
+.btn.secondary {
+  background: #f0a500;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn.secondary:hover {
+  background: #c07a00;
+  transform: scale(1.05);
+}

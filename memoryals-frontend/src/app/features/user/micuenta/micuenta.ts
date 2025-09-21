@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { Auth } from '../../../core/services/auth';
+import { Auth } from '../../../core/services/usuario/auth';
 
 interface Usuario {
   _id: string;

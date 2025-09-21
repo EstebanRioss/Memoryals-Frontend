@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { PlanService } from '../../../core/services/plan';
+import { PlanService } from '../../../core/services/usuario/plan';
 import { CommonModule, NgForOf } from '@angular/common'; // Added NgForOf
 
 // Declare Swiper as a global variable
@@ -8,7 +8,7 @@ declare const Swiper: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NgForOf], // Added NgForOf
+  imports: [CommonModule], // Added NgForOf
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
