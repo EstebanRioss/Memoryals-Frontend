@@ -1,0 +1,20 @@
+:root {
+  --verde-oscuro: #23423f;
+  --verde-medio: #2f5233;
+  --verde-claro: #6bbf59;
+  --verde-acento: #8edb73;
+  --beige: #fdfcf7;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(120deg, #fdfcf7 60%, var(--verde-claro) 100%);
+  color: var(--verde-oscuro);
+}
+
+/* Para poder usar las variables de CSS en Tailwind */
+.bg-verde-claro { background-color: var(--verde-claro); }
+.bg-verde-oscuro { background-color: var(--verde-oscuro); }
+.text-verde-oscuro { color: var(--verde-oscuro); }
+.border-verde-claro { border-color: var(--verde-claro); }
+.hover\:bg-verde-acento:hover { background-color: var(--verde-acento); }

@@ -3,7 +3,9 @@
 
     <!-- Logo y descripción -->
     <div class="footer-brand">
-      <img src="assets/logo-footer.png" alt="Logo Memoryals">
+      <a routerLink="/">
+        <img src="/logo.png" alt="Logo Memoryals" style="max-width: 150px;">
+      </a>
       <p>Memoryals acompaña a las familias en los momentos más importantes de la vida, 
         brindando respaldo humano y financiero con planes accesibles.</p>
     </div>
@@ -12,11 +14,10 @@
     <div class="footer-links">
       <h4>Enlaces útiles</h4>
       <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/planes">Planes</a></li>
-        <li><a href="/servicios">Servicios</a></li>
-        <li><a href="/contacto">Contacto</a></li>
-        <li><a href="/politica">Política de privacidad</a></li>
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/planes">Planes</a></li>
+        <li><a routerLink="/sobre-nosotros">Sobre Nosotros</a></li>
+        <li><a routerLink="/politica">Política de privacidad</a></li>
       </ul>
     </div>
 
@@ -24,18 +25,15 @@
     <div class="footer-contact">
       <h4>Contacto</h4>
       <p>📍 Buenos Aires, Argentina</p>
-      <p>📞 +54 11 5555-5555</p>
-      <p>✉️ contacto@memoryals.com</p>
+      <p><i class="fas fa-phone"></i> <a href="tel:3884409145">  +54 3884409145</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:memoryals.fp@gmail.com"> memoryals.fp@gmail.com</a></p>
     </div>
 
     <!-- Redes sociales -->
     <div class="footer-social">
       <h4>Seguinos</h4>
       <div class="social">
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=61580288409117&locale=es_LA" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
       </div>
     </div>
 

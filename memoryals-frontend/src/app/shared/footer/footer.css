@@ -71,6 +71,16 @@ footer {
   margin-bottom: 0.4rem;
 }
 
+.footer-contact a {
+  text-decoration: none;
+  color: var(--gris);
+  transition: var(--transicion);
+}
+
+.footer-contact a:hover {
+  color: var(--verde-claro);
+}
+
 /* Redes sociales */
 .footer-social .social {
   display: flex;
