@@ -1,0 +1,127 @@
+<div class="profile-card" *ngIf="usuario">
+  <h2 class="section-title">Mi Perfil</h2>
+  
+  <!-- Datos fijos (no editables) -->
+  <fieldset disabled class="disabled-fields">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [value]="usuario.email">
+    </div>
+    <div class="form-group">
+      <label for="rol">Rol</label>
+      <input type="text" id="rol" [value]="usuario.rol" class="text-capitalize">
+    </div>
+    <div class="form-group">
+      <label for="dni">DNI</label>
+      <input type="text" id="dni" [value]="usuario.dni">
+    </div>
+  </fieldset>
+
+  <hr class="divider">
+
+  <div class="forms-grid">
+    <!-- Formulario de edición -->
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" novalidate class="form-box">
+      <h3>Editar mis datos</h3>
+
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          formControlName="nombre"
+          [class.invalid]="nombre?.invalid && nombre?.touched"
+        >
+        <div class="error" *ngIf="nombre?.invalid && nombre?.touched">
+          <div *ngIf="nombre?.errors?.['required']">El nombre es requerido.</div>
+          <div *ngIf="nombre?.errors?.['minlength']">Debe tener al menos 2 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          type="tel"
+          id="telefono"
+          formControlName="telefono"
+          placeholder="Ej: 3881234567"
+          [class.invalid]="telefono?.invalid && telefono?.touched"
+        >
+        <div class="error" *ngIf="telefono?.invalid && telefono?.touched">
+          <div *ngIf="telefono?.errors?.['pattern']">Número inválido.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input
+          type="text"
+          id="direccion"
+          formControlName="direccion"
+          [class.invalid]="direccion?.invalid && direccion?.touched"
+        >
+      </div>
+
+      <div *ngIf="mensajeExito" class="alert success">{{ mensajeExito }}</div>
+      <div *ngIf="mensajeError" class="alert error">{{ mensajeError }}</div>
+
+      <button type="submit" class="btn primary" [disabled]="updateForm.invalid || isLoading">
+        <span *ngIf="isLoading" class="spinner"></span>
+        {{ isLoading ? 'Guardando...' : 'Guardar Cambios' }}
+      </button>
+    </form>
+
+    <!-- Formulario de contraseña -->
+    <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()" novalidate class="form-box">
+      <h3>Cambiar contraseña</h3>
+
+      <div class="form-group">
+        <label for="contrasenaActual">Contraseña actual</label>
+        <input
+          type="password"
+          id="contrasenaActual"
+          formControlName="contrasenaActual"
+          [class.invalid]="contrasenaActual?.invalid && contrasenaActual?.touched"
+        >
+        <div class="error" *ngIf="contrasenaActual?.invalid && contrasenaActual?.touched">
+          La contraseña actual es requerida.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="nuevaContrasena">Nueva contraseña</label>
+        <input
+          type="password"
+          id="nuevaContrasena"
+          formControlName="nuevaContrasena"
+          [class.invalid]="nuevaContrasena?.invalid && nuevaContrasena?.touched"
+        >
+        <div class="error" *ngIf="nuevaContrasena?.invalid && nuevaContrasena?.touched">
+          <div *ngIf="nuevaContrasena?.errors?.['required']">La nueva contraseña es requerida.</div>
+          <div *ngIf="nuevaContrasena?.errors?.['minlength']">Mínimo 6 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmarContrasena">Confirmar nueva contraseña</label>
+        <input
+          type="password"
+          id="confirmarContrasena"
+          formControlName="confirmarContrasena"
+          [class.invalid]="(confirmarContrasena?.invalid && confirmarContrasena?.touched) || (passwordForm.errors?.['passwordMismatch'] && confirmarContrasena?.touched)"
+        >
+        <div class="error" *ngIf="confirmarContrasena?.touched && passwordForm.errors?.['passwordMismatch']">
+          Las contraseñas no coinciden.
+        </div>
+      </div>
+
+      <div *ngIf="mensajeExitoPass" class="alert success">{{ mensajeExitoPass }}</div>
+      <div *ngIf="mensajeErrorPass" class="alert error">{{ mensajeErrorPass }}</div>
+
+      <button type="submit" class="btn secondary" [disabled]="passwordForm.invalid || isPasswordLoading">
+        <span *ngIf="isPasswordLoading" class="spinner"></span>
+        {{ isPasswordLoading ? 'Cambiando...' : 'Cambiar Contraseña' }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -31,11 +31,12 @@
       <!-- Si HAY usuario -->
       <div class="nav-actions user-dropdown" *ngIf="user">
         <button class="user-btn" (click)="toggleDropdown()">
-          👤 {{ user.name }}
+          👤 {{ user.nombre }}
           <span class="arrow" [class.open]="isDropdownOpen">▼</span>
         </button>
         <ul class="dropdown-menu" [class.show]="isDropdownOpen">
-          <li><a routerLink="/mi-cuenta">Mi cuenta</a></li>
+          <!-- Enviamos el id del usuario en la ruta -->
+          <li><a [routerLink]="['/mi-cuenta', user._id]">Mi cuenta</a></li>
           <li><a (click)="logout()">Salir</a></li>
         </ul>
       </div>
