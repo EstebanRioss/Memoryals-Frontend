@@ -1,0 +1,27 @@
+.about-container {
+  max-width: 700px;
+  margin: 48px auto;
+  padding: 40px 32px;
+  background: linear-gradient(135deg, #fdfcf7 60%, #e8f5e1 100%);
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(47,82,51,0.08);
+  text-align: center;
+  border: 1.5px solid #6bbf59;
+  animation: fadeUp 0.7s cubic-bezier(.2,.9,.3,1);
+}
+.about-container h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #23423f;
+  letter-spacing: 1px;
+}
+.about-container p {
+  color: #2f5233;
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}

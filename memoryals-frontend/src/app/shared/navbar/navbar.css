@@ -1,10 +1,11 @@
 :root {
-  --verde-oscuro: #2f5233;
+  --verde-oscuro: #23423f;
+  --verde-medio: #2f5233;
   --verde-claro: #6bbf59;
   --beige: #fdfcf7;
   --negro: #000;
-  --sombra: 0 6px 20px rgba(0,0,0,0.08);
-  --transicion: all 0.3s ease;
+  --sombra: 0 6px 20px rgba(47,82,51,0.08);
+  --transicion: all 0.3s cubic-bezier(.2,.9,.3,1);
 }
 
 /* =========================
@@ -12,14 +13,14 @@
 ========================= */
 nav {
   width: 100%;
-  background-color: #fdfcf7;
-  border-bottom: 1px solid #e0e0dc;
+  background: linear-gradient(90deg, var(--beige) 70%, #e8f5e1 100%);
+  border-bottom: 2px solid var(--verde-claro);
   box-shadow: var(--sombra);
   position: sticky;
   top: 0;
   z-index: 1000;
   font-family: 'Inter', sans-serif;
-  animation: fadeDown 0.6s ease-in-out;
+  animation: fadeDown 0.6s cubic-bezier(.2,.9,.3,1);
 }
 
 .nav-container {
@@ -36,11 +37,11 @@ nav {
 ========================= */
 .logo img {
   height: 55px;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s cubic-bezier(.2,.9,.3,1), filter 0.3s cubic-bezier(.2,.9,.3,1);
 }
 .logo img:hover {
   transform: scale(1.08) rotate(-2deg);
-  filter: brightness(1.1);
+  filter: brightness(1.1) drop-shadow(0 2px 8px var(--verde-claro));
 }
 
 /* =========================
