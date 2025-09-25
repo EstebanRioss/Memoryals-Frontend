@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../../core/services/usuario/auth';
+import { PlanService } from '../../../core/services/usuario/plan';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule,FormsModule],
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })
 export class Register {
   registerForm!: FormGroup;
   codeForm!: FormGroup;
+
+  planes: any[] = [];
+  selectedPlan: any = null;
+  selectedCuota: number | null = null;
 
   isCodeStep = false;
   isVerified = false;
@@ -24,7 +29,8 @@ export class Register {
   constructor(
     private fb: FormBuilder,
     private authService: Auth,
-    private router: Router
+    private router: Router,
+    private planService: PlanService
   ) {}
 
   ngOnInit() {
@@ -35,7 +41,13 @@ export class Register {
       dni: ['', Validators.required],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],   // 👈 agregado
       rol: ['cliente']
+    });
+
+    this.planService.getPlanes().subscribe({
+      next: (res) => this.planes = res,
+      error: (err) => console.error('Error al traer planes:', err)
     });
 
     this.codeForm = this.fb.group({
@@ -85,4 +97,22 @@ export class Register {
       }
     });
   }
+
+  onBirthDateChange() {
+    const fechaNacimiento = this.registerForm.value.fechaNacimiento;
+    if (!fechaNacimiento) return;
+
+    const hoy = new Date();
+    const nacimiento = new Date(fechaNacimiento);
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    const m = hoy.getMonth() - nacimiento.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+      edad--;
+    }
+
+    // Buscar plan según edad
+    this.selectedPlan = this.planes.find(p => edad >= p.edadMin && edad <= p.edadMax) || null;
+    this.selectedCuota = null; // reset
+  }
+
 }

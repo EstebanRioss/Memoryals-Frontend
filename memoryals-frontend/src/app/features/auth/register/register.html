@@ -22,6 +22,24 @@
         </div>
 
         <div class="input-group">
+          <i class="fas fa-calendar"></i>
+          <input type="date" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento" (change)="onBirthDateChange()" />
+        </div>
+
+        <div *ngIf="selectedPlan">
+          <h3>{{ selectedPlan.nombre }}</h3>
+          <p>Elegí la cantidad de cuotas:</p>
+
+          <div class="input-group">
+            <select [(ngModel)]="selectedCuota" name="cuota">
+              <option *ngFor="let precio of selectedPlan.PrecioCoutas; let i = index" [value]="precio">
+                {{ i + 1 }} - ${{ precio }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
           <i class="fas fa-envelope"></i>
           <input type="email" placeholder="Email" formControlName="email">
         </div>
