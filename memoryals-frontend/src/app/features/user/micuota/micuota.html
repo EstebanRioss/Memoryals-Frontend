@@ -1,9 +1,9 @@
 <div class="pagos-card" *ngIf="pagos">
-  <h2 class="section-title">Mis Pagos</h2>
+  <h2 class="section-title"><i class="fas fa-wallet title-icon"></i>Mis Pagos</h2>
 
   <!-- Pago actual -->
   <div class="pago-actual" *ngIf="pagoActual">
-    <h3>Pago de este mes</h3>
+  <h3><i class="fas fa-calendar-check section-icon"></i>Pago de este mes</h3>
     <p><strong>Mes:</strong> {{ pagoActual.mes }}/{{ pagoActual.anio }}</p>
     <p><strong>Monto:</strong> ${{ pagoActual.monto }}</p>
     <p><strong>Estado:</strong>
@@ -16,7 +16,7 @@
     </p>
 
     <button *ngIf="pagoActual.estado === 'pendiente'" class="btn primary" (click)="pagar(pagoActual)">
-      Pagar ahora
+      <i class="fas fa-credit-card"></i> Pagar ahora
     </button>
 
     <!-- Mostrar QR y link en una sola línea -->
@@ -34,8 +34,9 @@
 
   <!-- Historial -->
   <div class="historial">
-    <h3>Historial de pagos</h3>
-    <table class="tabla-pagos">
+    <h3><i class="fas fa-history section-icon"></i>Historial de pagos</h3>
+    <div class="table-responsive">
+      <table class="tabla-pagos">
       <thead>
         <tr>
           <th>Mes/Año</th>
@@ -52,6 +53,7 @@
           <td>{{ pago.fechaPago ? (pago.fechaPago | date:'dd/MM/yyyy') : '-' }}</td>
         </tr>
       </tbody>
-    </table>
+      </table>
+    </div>
   </div>
 </div>

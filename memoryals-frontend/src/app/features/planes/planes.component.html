@@ -1,5 +1,49 @@
 <div class="planes-container">
-  <h1>Planes</h1>
+  <h1><i class="fas fa-hand-holding-heart title-icon" aria-hidden="true"></i>Planes</h1>
   <p>Explora nuestros planes y elige el que mejor se adapte a tus necesidades.</p>
-  <!-- Aquí se mostrarán los planes -->
+
+  <div class="simulador">
+    <label for="age">Ingresa tu edad:</label>
+    <input id="age" type="number" [(ngModel)]="age" min="0" />
+    <button (click)="simulate()">Simular</button>
+  </div>
+
+  <div *ngIf="loading">Cargando planes...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div *ngIf="!loading && matchedPlanes.length === 0 && age !== null">
+    <p>No se encontraron planes para la edad indicada.</p>
+  </div>
+
+  <div class="planes-list">
+    <div *ngFor="let plan of matchedPlanes" class="plan-card">
+  <h3><i class="fas fa-layer-group plan-icon" aria-hidden="true"></i>{{ plan.nombre }}</h3>
+      <p>Edad: {{ plan.edadMin }} - {{ plan.edadMax }}</p>
+      <div class="cuotas-container" *ngIf="plan.cuotas && plan.cuotas.length">
+        <p class="cuotas-title">Cuotas disponibles</p>
+        <div class="cuotas-list">
+          <table class="cuotas-table">
+            <thead>
+              <tr><th>Cuotas</th><th>Monto</th></tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of plan.cuotas">
+                  <td class="cell-qty"><i class="fas fa-calendar-alt cell-icon" aria-hidden="true"></i>{{ c.instalments }}x</td>
+                  <td class="cell-amount"><i class="fas fa-dollar-sign cell-icon" aria-hidden="true"></i>{{ c.amount | currency:'ARS' }}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="!plan.cuotas || plan.cuotas.length === 0">
+        <p>No hay información de cuotas para este plan.</p>
+      </div>
+
+      <div class="memoryals-note">
+        <p>Memoryals: acompañamiento humano y respaldo económico para tu familia.</p>
+        <button class="contact-btn" (click)="goToFooter()">Consultas y contacto</button>
+        <div class="arrow-down" title="Ir al contacto" (click)="goToFooter()"></div>
+      </div>
+    </div>
+  </div>
 </div>

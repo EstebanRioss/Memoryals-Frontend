@@ -1,5 +1,5 @@
 <div class="profile-card" *ngIf="usuario">
-  <h2 class="section-title">Mi Perfil</h2>
+  <h2 class="section-title"><i class="fas fa-user-circle title-icon"></i>Mi Perfil</h2>
   
   <!-- Datos fijos (no editables) -->
   <fieldset disabled class="disabled-fields">
@@ -22,7 +22,7 @@
   <div class="forms-grid">
     <!-- Formulario de edición -->
     <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" novalidate class="form-box">
-      <h3>Editar mis datos</h3>
+      <h3><i class="fas fa-edit section-icon"></i>Editar mis datos</h3>
 
       <div class="form-group">
         <label for="nombre">Nombre</label>
@@ -73,7 +73,7 @@
 
     <!-- Formulario de contraseña -->
     <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()" novalidate class="form-box">
-      <h3>Cambiar contraseña</h3>
+      <h3><i class="fas fa-key section-icon"></i>Cambiar contraseña</h3>
 
       <div class="form-group">
         <label for="contrasenaActual">Contraseña actual</label>

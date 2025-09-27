@@ -25,3 +25,100 @@
   0% { opacity: 0; transform: translateY(24px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
+/* Simulador */
+.simulador {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin: 22px 0 28px;
+}
+.simulador label {
+  font-weight: 600;
+  color: #2b4d3a;
+}
+.simulador input[type="number"] {
+  width: 120px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  font-size: 1rem;
+}
+.simulador button {
+  background: linear-gradient(90deg,#4caf50,#2e8b57);
+  color: white;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(46,139,87,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+.simulador button:hover{ transform: translateY(-2px); }
+.error { color: #b02a37; margin-top: 8px; font-weight:600 }
+
+/* Lista de planes */
+.planes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+.plan-card {
+  background: linear-gradient(180deg, #ffffff, #f7fff7);
+  border-radius: 14px;
+  padding: 16px;
+  text-align: left;
+  border: 1px solid rgba(46,139,87,0.12);
+  box-shadow: 0 8px 20px rgba(38,70,45,0.06);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 34px rgba(38,70,45,0.12);
+}
+.plan-card h3 { color: #1f4b3b; margin: 0 0 8px 0 }
+.plan-card p { color: #3b5f46; margin: 6px 0 }
+.plan-card ul { margin: 6px 0 0 18px }
+.plan-card li { color: #235133; margin-bottom: 6px }
+
+.title-icon { color: #2e8b57; margin-right:10px }
+.plan-icon { color: #3a6b4f; margin-right:8px }
+.cell-icon { margin-right:6px; color:#2b513d; opacity:0.95 }
+
+/* small screens */
+@media (max-width: 520px) {
+  .planes-container { padding: 20px 16px; margin: 20px auto }
+  .simulador { flex-direction: column; gap: 10px }
+  .simulador input[type="number"] { width: 100% }
+  .simulador button { width: 100% }
+}
+
+/* Cuotas chips */
+.cuotas-container { margin-top: 10px }
+.cuotas-title { font-weight: 700; color: #2b513d; margin-bottom: 6px }
+/* Tabla tipo Excel para cuotas */
+.cuotas-list { margin-top:6px; overflow:auto }
+.cuotas-table { border-collapse: collapse; width:100%; }
+.cuotas-table thead th { text-align:left; padding:8px 10px; color:#23423f; font-weight:700 }
+.cuotas-table tbody td { padding:8px 10px; border: 1px solid rgba(46,139,87,0.12); }
+.cuotas-table tbody tr td.cell-qty { background: linear-gradient(180deg,#e9f7ea,#dff3dd); color:#155032; font-weight:700; width:110px }
+.cuotas-table tbody tr td.cell-amount { background: linear-gradient(180deg,#f7fff7,#effff0); color:#184b35; font-weight:600 }
+.cuotas-table tbody tr:hover td { filter:brightness(0.98) }
+
+/* Advanced animations: floating arrow and button pulse */
+.contact-btn { position: relative; overflow: visible }
+.arrow-down { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(180deg,#e8f7ec,#dff2e6); display:inline-block; margin-left:8px; position:relative }
+.arrow-down::before { content: ''; position:absolute; left:50%; top:45%; transform:translate(-50%,-50%); width:10px; height:10px; border-left:2px solid #2e8b57; border-bottom:2px solid #2e8b57; transform:translate(-50%,-50%) rotate(-45deg); animation: bounce 1s infinite }
+@keyframes bounce { 0%{ transform:translate(-50%,-50%) rotate(-45deg) translateY(0) } 50% { transform:translate(-50%,-50%) rotate(-45deg) translateY(6px) } 100% { transform:translate(-50%,-50%) rotate(-45deg) translateY(0) } }
+
+.memoryals-note { margin-top: 12px; display:flex; align-items:center; gap:12px }
+.memoryals-note p { margin:0; color:#3a5f4a; font-weight:600 }
+.contact-btn {
+  background: transparent; border: 1px solid #2e8b57; color:#2e8b57; padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:700
+}
+.arrow-down { font-size:1.5rem; color:#2e8b57; cursor:pointer; transform: translateY(0); transition: transform .3s ease }
+.arrow-down:hover { transform: translateY(4px) }
