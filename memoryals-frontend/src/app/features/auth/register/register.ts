@@ -41,8 +41,10 @@ export class Register {
       dni: ['', Validators.required],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],   // 👈 agregado
-      rol: ['cliente']
+      fechaNacimiento: ['', Validators.required],
+      rol: ['cliente'],
+      planId: [null, Validators.required], // nuevo
+      Monto: [null, Validators.required]   // nuevo
     });
 
     this.planService.getPlanes().subscribe({
@@ -61,6 +63,9 @@ export class Register {
     this.loading = true;
     this.errorMessage = '';
     this.successMessage = '';
+    console.log(this.registerForm.value);
+    const formValue = { ...this.registerForm.value };
+    formValue.Monto = Number(formValue.Monto); // convertir a número
 
     this.authService.register(this.registerForm.value).subscribe({
       next: (res: any) => {
@@ -112,7 +117,13 @@ export class Register {
 
     // Buscar plan según edad
     this.selectedPlan = this.planes.find(p => edad >= p.edadMin && edad <= p.edadMax) || null;
-    this.selectedCuota = null; // reset
+    this.selectedCuota = null;
+
+    // Setear planId en el form
+    this.registerForm.patchValue({
+      planId: this.selectedPlan?._id || null,
+      Monto: null
+    });
   }
 
 }

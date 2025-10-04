@@ -3,7 +3,8 @@
     <div class="avatar">
       <i class="fas fa-user-plus"></i>
     </div>
-      <!-- Mensajes globales -->
+
+    <!-- Mensajes globales -->
     <div *ngIf="errorMessage" class="alert alert-error">
       {{ errorMessage }}
     </div>
@@ -26,12 +27,17 @@
           <input type="date" placeholder="Fecha de nacimiento" formControlName="fechaNacimiento" (change)="onBirthDateChange()" />
         </div>
 
+        <!-- Campo oculto planId -->
+        <input type="hidden" formControlName="planId">
+
+        <!-- Selección de monto/cuotas -->
         <div *ngIf="selectedPlan">
           <h3>{{ selectedPlan.nombre }}</h3>
           <p>Elegí la cantidad de cuotas:</p>
 
           <div class="input-group">
-            <select [(ngModel)]="selectedCuota" name="cuota">
+            <select formControlName="Monto">
+              <option value="" disabled selected>Seleccioná una cuota</option>
               <option *ngFor="let precio of selectedPlan.PrecioCoutas; let i = index" [value]="precio">
                 {{ i + 1 }} - ${{ precio }}
               </option>
@@ -64,7 +70,9 @@
           <input type="text" placeholder="Teléfono" formControlName="telefono">
         </div>
 
-        <button type="submit" class="btn-login">REGISTRARSE</button>
+        <button type="submit" class="btn-login" [disabled]="registerForm.invalid || (selectedPlan && !registerForm.get('Monto')?.value)">
+          REGISTRARSE
+        </button>
       </form>
 
       <p class="register-link">

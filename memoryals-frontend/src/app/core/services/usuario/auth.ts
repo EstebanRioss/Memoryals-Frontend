@@ -35,6 +35,8 @@ export class Auth {
     rol?: string;
     direccion?: string;
     telefono?: string;
+    planId?: string;
+    Monto?: number;
   }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
