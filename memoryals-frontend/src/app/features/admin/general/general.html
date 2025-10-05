@@ -1,0 +1,20 @@
+<div class="profile-page">
+  <div class="profile-card">
+    <h2 class="section-title">Resumen General</h2>
+
+    <div *ngIf="loading" class="spinner"></div>
+    <div *ngIf="error" class="alert error">{{ error }}</div>
+
+    <div class="stats-container" *ngIf="!loading && !error">
+      <div class="stat-card">
+        <h3>Total Pagos (Pagados)</h3>
+        <p class="stat-value">${{ totalPagos | number }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Usuarios</h3>
+        <p class="stat-value">{{ totalUsuarios }}</p>
+      </div>
+    </div>
+  </div>
+</div>

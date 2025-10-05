@@ -9,6 +9,7 @@ import { Micuota } from './features/user/micuota/micuota';
 import { Admin } from './features/admin/admin';
 import { PanelU } from './features/admin/panel-u/panel-u';
 import { PanelP } from './features/admin/panel-p/panel-p';
+import { General } from './features/admin/general/general';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -24,6 +25,7 @@ export const routes: Routes = [
     component: Admin,   // layout que contiene el aside
     children: [
       { path: 'usuarios', component: PanelU },
+      { path: 'general', component: General },
       { path: 'pagos', component: PanelP },
       { path: '', redirectTo: 'usuarios', pathMatch: 'full' } // default
     ]
