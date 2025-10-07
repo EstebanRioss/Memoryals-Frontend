@@ -62,7 +62,7 @@ export class Register {
 
     this.loading = true;
     this.errorMessage = '';
-    this.successMessage = '';
+    this.successMessage = 'Cargando Datos ...';
     console.log(this.registerForm.value);
     const formValue = { ...this.registerForm.value };
     formValue.Monto = Number(formValue.Monto); // convertir a número

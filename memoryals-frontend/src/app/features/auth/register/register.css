@@ -1,41 +1,45 @@
-/* Fondo general */
+/* ==============================
+   CONTENEDOR GENERAL
+============================== */
 .login-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
   background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
   background-attachment: fixed;
-
   background-image: radial-gradient(circle at top left, rgba(47, 79, 79, 0.1), transparent 40%),
                     radial-gradient(circle at bottom right, rgba(35, 66, 63, 0.15), transparent 50%);
   font-family: "Segoe UI", sans-serif;
   padding: 20px;
 }
 
-/* Caja principal */
+/* ==============================
+   CAJA PRINCIPAL
+============================== */
 .login-box {
   width: 400px;
   max-width: 95%;
   padding: 40px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   text-align: center;
   color: #23423f;
   position: relative;
   animation: fadeIn 0.6s ease;
+  transition: all 0.4s ease;
 }
 
-/* Animación de entrada */
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Avatar */
+/* ==============================
+   AVATAR / ICONO SUPERIOR
+============================== */
 .avatar {
   width: 80px;
   height: 80px;
@@ -45,20 +49,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: -80px auto 20px;
+  margin: -80px auto 25px;
   font-size: 32px;
   color: #fdfcf7;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.7s ease;
 }
 
-/* Título */
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ==============================
+   TITULOS
+============================== */
 h2 {
   margin-bottom: 20px;
   font-weight: 600;
   color: #23423f;
 }
 
-/* Inputs + select */
+h3 {
+  color: #2f5233;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* ==============================
+   GRUPOS DE INPUTS
+============================== */
 .input-group {
   display: flex;
   align-items: center;
@@ -90,13 +110,14 @@ h2 {
   font-size: 14px;
 }
 
-/* select estilizado */
 .input-group select {
   cursor: pointer;
   font-weight: 500;
 }
 
-/* Botones */
+/* ==============================
+   BOTONES
+============================== */
 .btn-login {
   width: 100%;
   padding: 12px;
@@ -104,7 +125,7 @@ h2 {
   border-radius: 8px;
   background: #2f5233;
   color: #fdfcf7;
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
@@ -112,13 +133,22 @@ h2 {
 
 .btn-login:hover {
   background: #1e3922;
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* Link abajo */
+.btn-login:disabled {
+  background: #94b49f;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==============================
+   LINK INFERIOR
+============================== */
 .register-link {
-  margin-top: 15px;
+  margin-top: 20px;
   font-size: 13px;
   color: #23423f;
 }
@@ -135,28 +165,66 @@ h2 {
   text-decoration: underline;
 }
 
-/* Alertas */
+/* ==============================
+   MENSAJES (alertas y estados)
+============================== */
 .alert {
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 15px;
+  padding: 12px 14px;
+  border-radius: 8px;
   font-size: 14px;
+  margin-bottom: 25px; /* mayor separación */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   animation: fadeIn 0.4s ease;
+  transition: all 0.4s ease;
+  font-weight: 500;
 }
 
+/* Mensaje de carga */
+.alert-loading {
+  background: #fff8e5;
+  color: #a67c00;
+  border: 1px solid #ffd966;
+}
+
+.alert-loading::before {
+  content: "⏳";
+  font-size: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mensaje de error */
 .alert-error {
   background: #ffe5e5;
   color: #a30000;
   border: 1px solid #ffb3b3;
 }
 
+.alert-error::before {
+  content: "❌";
+}
+
+/* Mensaje de éxito */
 .alert-success {
   background: #e6f9e6;
   color: #1f5f2a;
   border: 1px solid #a8c3a1;
 }
 
-/* Mensaje de éxito final */
+.alert-success::before {
+  content: "✅";
+}
+
+/* ==============================
+   MENSAJE DE ÉXITO FINAL
+============================== */
 .success-message {
   font-size: 15px;
   font-weight: 600;
@@ -166,4 +234,33 @@ h2 {
   background: #e8f5e1;
   border: 1px solid #a8c3a1;
   animation: fadeIn 0.6s ease;
+}
+
+/* ==============================
+   ESPACIADO ENTRE SECCIONES
+============================== */
+.login-box > div {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  transition: all 0.4s ease;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 25px;
+    width: 90%;
+  }
+
+  .avatar {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
+
+  .btn-login {
+    font-size: 14px;
+  }
 }
