@@ -1,232 +1,189 @@
-/* Fondo general de la página */
-.profile-page {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
-  background-attachment: fixed;
-  font-family: "Segoe UI", sans-serif;
-  overflow: hidden;
-  padding: 20px;
-  box-sizing: border-box;
-  animation: fadeInPage 1s ease forwards;
+/* === Panel Content V2 (Unified) === */
+
+/* Contenedor del panel */
+.panel-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px var(--shadow-color);
 }
 
-@keyframes fadeInPage {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Card principal centrada */
-.profile-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  width: 1200px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  overflow-y: auto;
-  position: relative;
-  transform: scale(0.95);
-  opacity: 0;
-  animation: cardPop 0.5s ease forwards 0.3s;
-}
-
-@keyframes cardPop {
-  to { transform: scale(1); opacity: 1; }
-}
-
-/* Título de sección */
-.profile-card h2.section-title {
-  font-size: 2em;
+.panel-title {
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #23423f;
-  text-align: center;
-  margin-bottom: 15px;
-  text-shadow: 0 0 5px #23423f44;
-  opacity: 0;
-  animation: titleSlide 0.5s ease forwards 0.5s;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
 }
 
-@keyframes titleSlide {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
+/* --- Tabla Unificada --- */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
 }
 
-/* Tabla de pagos */
-.table-users {
+.data-table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(207, 232, 207, 0.2);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.table-users th, .table-users td {
-  padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid rgba(47,82,51,0.2);
-  color: #23423f;
-  font-size: 0.95em;
+  min-width: 600px; /* Ancho mínimo para forzar scroll si es necesario */
 }
 
-.table-users th {
-  background-color: rgba(47, 82, 51, 0.1);
+.data-table th,
+.data-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.data-table th {
+  font-size: 0.8rem;
   font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: #f9fafb;
 }
 
-.table-users tr:hover {
-  background-color: rgba(47,82,51,0.15);
-  transform: scale(1.01);
+.data-table tbody tr:hover {
+  background-color: #e8f5e1;
+}
+
+.data-table .actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --- Botones Unificados --- */
+.btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
   transition: all 0.2s ease;
 }
 
-/* Botones */
-.btn {
-  padding: 8px 15px;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.95em;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.3s ease;
-  user-select: none;
+.btn-primary {
+  background-color: var(--sidebar-active-bg);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #4338ca;
 }
 
-.btn.primary {
-  background: #2f5233;
-  color: #fdfcf7;
-  border: none;
+.btn-secondary {
+  background-color: #fff;
+  color: var(--text-secondary);
+  border-color: var(--border-color);
+}
+.btn-secondary:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
 }
 
-.btn.primary:hover {
-  background: #1e3922;
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.btn.secondary {
-  background: rgba(207, 232, 207, 0.2);
-  border: 1px solid #a8c3a1;
-  color: #23423f;
-}
-
-.btn.secondary:hover {
-  background: rgba(47, 82, 51, 0.15);
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-/* Alertas */
-.alert {
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 13px;
-  text-align: center;
-  font-weight: 500;
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: showAlert 0.4s ease forwards;
-}
-
-@keyframes showAlert {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.alert.error {
-  background-color: rgba(255, 0, 0, 0.1);
-  color: #900;
-}
-
-/* Spinner */
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #fff;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 0.9s linear infinite;
-  margin: 10px auto;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Modal */
-.modal {
+/* --- Modal Unificado --- */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal-content {
-  background: rgba(255,255,255,0.95);
-  padding: 25px 30px;
-  border-radius: 15px;
-  width: 450px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transform: scale(0.9);
-  opacity: 0;
-  animation: modalPop 0.4s forwards;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
 }
 
-@keyframes modalPop {
-  to { transform: scale(1); opacity: 1; }
+.modal-overlay.show .modal-content {
+  transform: scale(1);
 }
 
-/* Inputs y selects */
-.modal-content input,
-.modal-content select {
-  padding: 10px 12px;
+.modal-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+/* --- Formularios Unificados --- */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  border: 1px solid #a8c3a1;
-  background: rgba(207,232,207,0.2);
-  font-size: 0.95em;
-  color: #23423f;
-  transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
-.modal-content input:focus,
-.modal-content select:focus {
+.form-group input:focus,
+.form-group select:focus {
   outline: none;
-  border-color: #2f5233;
-  box-shadow: 0 0 8px rgba(47,82,51,0.4);
-  transform: scale(1.02);
+  border-color: var(--sidebar-active-bg);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
-/* Modal actions */
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  margin-top: 10px;
+  gap: 0.75rem;
+  margin-top: 2rem;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-  .profile-card { width: 95%; padding: 20px; }
-  .modal-content { width: 90%; padding: 20px; }
+/* --- Alertas y Spinners --- */
+.alert {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
 }
 
-@media (max-width: 480px) {
-  .profile-card { width: 95%; padding: 15px; gap: 15px; }
-  .modal-content { width: 95%; padding: 15px; }
-  .btn { padding: 8px 10px; font-size: 0.9em; }
+.alert.error {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border-color);
+  border-top-color: var(--sidebar-active-bg);
+  border-radius: 50%;
+  margin: 2rem auto;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

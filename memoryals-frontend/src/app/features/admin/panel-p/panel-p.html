@@ -1,11 +1,11 @@
-<div class="profile-page">
-  <div class="profile-card">
-    <h2 class="section-title">Panel de Pagos</h2>
+<div class="panel-container">
+  <h2 class="panel-title">Panel de Pagos</h2>
 
-    <div *ngIf="loading" class="spinner"></div>
-    <div *ngIf="error" class="alert error">{{ error }}</div>
+  <div *ngIf="loading" class="spinner"></div>
+  <div *ngIf="error" class="alert error">{{ error }}</div>
 
-    <table *ngIf="pagos.length" class="table-users">
+  <div *ngIf="pagos.length" class="table-wrapper">
+    <table class="data-table">
       <thead>
         <tr>
           <th>Usuario</th>
@@ -23,38 +23,42 @@
           <td>{{ pago.mes }}/{{ pago.anio }}</td>
           <td>{{ pago.monto | currency:'ARS' }}</td>
           <td>{{ pago.estado }}</td>
-          <td>
-            <button class="btn secondary" (click)="editarPago(pago)">Editar</button>
-            <button class="btn secondary" (click)="eliminarPago(pago._id)">Eliminar</button>
+          <td class="actions">
+            <button class="btn btn-secondary" (click)="editarPago(pago)">Editar</button>
+            <button class="btn btn-secondary" (click)="eliminarPago(pago._id)">Eliminar</button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
 
-    <div *ngIf="!loading && pagos.length === 0" class="alert">
-      No hay pagos registrados
-    </div>
+  <div *ngIf="!loading && pagos.length === 0" class="alert">
+    No hay pagos registrados
   </div>
 </div>
 
 <!-- Modal de edición -->
-<div class="modal" *ngIf="modalVisible">
+<div class="modal-overlay" [class.show]="modalVisible">
   <div class="modal-content">
     <h3>Editar Pago</h3>
 
-    <label>Estado:</label>
-    <select [(ngModel)]="pagoSeleccionado.estado">
-      <option value="pendiente">Pendiente</option>
-      <option value="pagada">Pagada</option>
-      <option value="rechazada">Rechazada</option>
-    </select>
+    <div class="form-group">
+      <label>Estado:</label>
+      <select [(ngModel)]="pagoSeleccionado.estado">
+        <option value="pendiente">Pendiente</option>
+        <option value="pagada">Pagada</option>
+        <option value="rechazada">Rechazada</option>
+      </select>
+    </div>
 
-    <label>Método de Pago:</label>
-    <input [(ngModel)]="pagoSeleccionado.metodoPago" type="text" />
+    <div class="form-group">
+      <label>Método de Pago:</label>
+      <input [(ngModel)]="pagoSeleccionado.metodoPago" type="text" />
+    </div>
 
     <div class="modal-actions">
-      <button class="btn primary" (click)="guardarPago()">Guardar</button>
-      <button class="btn secondary" (click)="cerrarModal()">Cancelar</button>
+      <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+      <button class="btn btn-primary" (click)="guardarPago()">Guardar</button>
     </div>
   </div>
 </div>
