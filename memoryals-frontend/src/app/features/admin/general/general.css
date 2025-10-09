@@ -1,0 +1,139 @@
+/* ====================== Fondo general de la página ====================== */
+.profile-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
+  background-attachment: fixed;
+  font-family: "Segoe UI", sans-serif;
+  padding: 10px;
+  box-sizing: border-box;
+  animation: fadeInPage 1s ease forwards;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================== Card principal ====================== */
+.profile-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  width: 1000px;
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  animation: cardPop 0.5s ease forwards 0.3s;
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+@keyframes cardPop {
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ====================== Título ====================== */
+.profile-card h2.section-title {
+  font-size: 2em;
+  font-weight: 700;
+  color: #23423f;
+  text-align: center;
+  margin-bottom: 15px;
+  text-shadow: 0 0 5px #23423f44;
+  animation: titleSlide 0.5s ease forwards 0.5s;
+  opacity: 0;
+}
+
+@keyframes titleSlide {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====================== Contenedor de estadísticas ====================== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(207, 232, 207, 0.2);
+  border: 1px solid #a8c3a1;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat-card:hover {
+  background: rgba(47, 82, 51, 0.1);
+  transform: scale(1.05) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.stat-card h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #2f5233;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #23423f;
+}
+
+/* ====================== Alertas ====================== */
+.alert {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: showAlert 0.4s ease forwards;
+}
+
+@keyframes showAlert {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.alert.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #900;
+}
+
+/* ====================== Spinner ====================== */
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #2f5233;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ====================== Responsive ====================== */
+@media (max-width: 768px) {
+  .profile-card { width: 95%; padding: 20px; }
+}
+
+@media (max-width: 480px) {
+  .profile-card { width: 95%; padding: 15px; gap: 15px; }
+  .stat-card h3 { font-size: 1em; }
+  .stat-value { font-size: 1.4em; }
+}

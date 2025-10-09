@@ -33,6 +33,7 @@ export class PanelP implements OnInit{
       next: (res) => {
         this.pagos = res;
         this.loading = false;
+        console.log(res.usuario);
       },
       error: (err) => {
         this.error = 'Error al cargar los pagos';
@@ -62,7 +63,7 @@ export class PanelP implements OnInit{
 
   guardarPago() {
     if (!this.pagoSeleccionado || !this.pagoSeleccionado._id) return;
-
+    console.log(this.pagoSeleccionado);
     this.adminService.updatePago(this.pagoSeleccionado._id, this.pagoSeleccionado)
       .subscribe({
         next: () => {
