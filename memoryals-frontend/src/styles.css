@@ -4,17 +4,28 @@
   --verde-claro: #6bbf59;
   --verde-acento: #8edb73;
   --beige: #fdfcf7;
+  --beige-claro: #f7f5ed; /* beige más suave para fondo */
+  --negro: #111;
+  --sombra-suave: 0 6px 20px rgba(0, 0, 0, 0.05);
+  --sombra-media: 0 8px 30px rgba(0, 0, 0, 0.1);
+  --transicion: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(120deg, #fdfcf7 60%, var(--verde-claro) 100%);
-  color: var(--verde-oscuro);
+  font-family: 'Inter', sans-serif;
+  /* Fondo distinguido tipo beige elegante */
+  background: linear-gradient(135deg, var(--beige-claro) 0%, var(--beige) 50%, var(--verde-claro) 100%);
+  color: var(--negro);
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  /* Textura ligera opcional para más elegancia */
+  background-image: 
+    repeating-radial-gradient(circle at 0 0, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px, transparent 1px, transparent 100px);
 }
-
-/* Para poder usar las variables de CSS en Tailwind */
-.bg-verde-claro { background-color: var(--verde-claro); }
-.bg-verde-oscuro { background-color: var(--verde-oscuro); }
-.text-verde-oscuro { color: var(--verde-oscuro); }
-.border-verde-claro { border-color: var(--verde-claro); }
-.hover\:bg-verde-acento:hover { background-color: var(--verde-acento); }

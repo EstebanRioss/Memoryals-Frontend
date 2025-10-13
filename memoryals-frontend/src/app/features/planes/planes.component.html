@@ -8,12 +8,7 @@
     <button (click)="simulate()">Simular</button>
   </div>
 
-  <div *ngIf="loading">Cargando planes...</div>
   <div *ngIf="error" class="error">{{ error }}</div>
-
-  <div *ngIf="!loading && matchedPlanes.length === 0 && age !== null">
-    <p>No se encontraron planes para la edad indicada.</p>
-  </div>
 
   <div class="planes-list">
     <div *ngFor="let plan of matchedPlanes" class="plan-card">

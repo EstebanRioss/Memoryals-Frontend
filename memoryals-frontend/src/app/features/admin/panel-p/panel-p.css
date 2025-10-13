@@ -1,11 +1,9 @@
-/* ====================== Fondo general de la página ====================== */
+/* ====================== Fondo general ====================== */
 .profile-page {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; /* centra vertical y horizontal */
-  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
-  background-attachment: fixed;
+  align-items: center;
   font-family: "Segoe UI", sans-serif;
   padding: 20px;
   box-sizing: border-box;
@@ -22,9 +20,10 @@
 .profile-card {
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  padding: 30px;
+  padding: 30px 25px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-  width: 1200px;
+  width: 80%;
+  max-width: 1200px;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -41,49 +40,53 @@
 }
 
 /* ====================== Título ====================== */
-.profile-card h2.section-title {
+.section-title {
   font-size: 2em;
   font-weight: 700;
-  color: #23423f;
   text-align: center;
   margin-bottom: 20px;
+  color: #23423f;
   text-shadow: 0 0 8px #23423f44;
   animation: titleSlide 0.5s ease forwards 0.5s;
   opacity: 0;
 }
 
-/* --- Tabla Unificada --- */
-.table-wrapper {
-  width: 100%;
-  overflow-x: auto; /* Permite scroll horizontal en pantallas pequeñas */
+@keyframes titleSlide {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ====================== Tabla de usuarios ====================== */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .table-users {
   width: 100%;
   border-collapse: collapse;
+  background: rgba(207, 232, 207, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  min-width: 700px;
+}
+
+.table-users th, .table-users td {
+  padding: 12px 15px;
   text-align: left;
-  min-width: 600px; /* Ancho mínimo para forzar scroll si es necesario */
+  border-bottom: 1px solid rgba(47,82,51,0.2);
+  color: #23423f;
+  font-size: 0.95em;
 }
 
-.data-table th,
-.data-table td {
-  padding: 0.85rem 1rem;
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-}
-
-.data-table th {
-  font-size: 0.8rem;
+.table-users th {
+  background-color: rgba(47, 82, 51, 0.1);
   font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  background-color: #f9fafb;
 }
 
 .table-users tr {
   transition: all 0.25s ease;
+  cursor: default;
 }
 
 .table-users tr:hover {
@@ -95,15 +98,11 @@
   transition: all 0.3s ease;
 }
 
-.table-users tr:hover td {
-  transform: scale(1.02);
-}
-
 /* ====================== Botones ====================== */
 .btn {
   padding: 8px 15px;
-  border-radius: 8px;
   font-weight: 600;
+  border-radius: 10px;
   font-size: 0.95em;
   cursor: pointer;
   display: inline-flex;
@@ -111,17 +110,12 @@
   justify-content: center;
   gap: 8px;
   transition: all 0.3s ease;
-  user-select: none;
 }
 
-.btn-secondary {
-  background-color: #fff;
-  color: var(--text-secondary);
-  border-color: var(--border-color);
-}
-.btn-secondary:hover {
-  background-color: #f9fafb;
-  border-color: #d1d5db;
+.btn.primary {
+  background: #2f5233;
+  color: #fdfcf7;
+  border: none;
 }
 
 .btn.primary:hover {
@@ -142,6 +136,7 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
+/* ====================== Filtro ====================== */
 .filter-container {
   margin-bottom: 15px;
   text-align: right;
@@ -153,6 +148,13 @@
   border: 1px solid #a8c3a1;
   font-size: 14px;
   width: 200px;
+  transition: all 0.3s ease;
+}
+
+.filter-container input:focus {
+  outline: none;
+  border-color: #2f5233;
+  box-shadow: 0 0 8px rgba(47,82,51,0.4);
 }
 
 /* ====================== Alertas ====================== */
@@ -204,86 +206,63 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
+  display: none;
+  background: rgba(0,0,0,0.5);
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
 }
 
-.modal-overlay.show {
-  opacity: 1;
-  visibility: visible;
+.modal.show {
+  display: flex;
 }
 
 .modal-content {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transform: scale(0.95);
-  transition: transform 0.3s ease;
+  background: rgba(255,255,255,0.95);
+  padding: 25px 30px;
+  border-radius: 15px;
+  width: 450px;
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  transform: scale(0.9);
+  opacity: 0;
+  animation: modalPop 0.4s forwards;
 }
 
-.modal-overlay.show .modal-content {
-  transform: scale(1);
+@keyframes modalPop {
+  to { transform: scale(1); opacity: 1; }
 }
 
-.modal-content h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-
-/* --- Formularios Unificados --- */
-.form-group {
-  margin-bottom: 1rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
+.modal-content input,
+.modal-content select {
+  padding: 10px 14px;
   border-radius: 8px;
-  font-size: 1rem;
+  border: 1px solid #a8c3a1;
+  background: rgba(207,232,207,0.2);
+  color: #23423f;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.modal-content input:focus,
+.modal-content select:focus {
   outline: none;
-  border-color: var(--sidebar-active-bg);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: #2f5233;
+  box-shadow: 0 0 8px rgba(47,82,51,0.4);
+  transform: scale(1.02);
 }
 
 .modal-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 0.75rem;
-  margin-top: 2rem;
+  gap: 15px;
+  margin-top: 10px;
 }
 
-.modal-content h3 {
-  font-weight: 700;
-  color: #23423f;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-/* ====================== Responsive ====================== */
+/* ====================== Media Queries ====================== */
 @media (max-width: 1024px) {
   .profile-card { width: 95%; padding: 25px; }
   .modal-content { width: 90%; padding: 20px; }
@@ -298,20 +277,7 @@
 @media (max-width: 480px) {
   .profile-card { width: 95%; padding: 15px; gap: 15px; }
   .modal-content { width: 95%; padding: 15px; }
+  .section-title { font-size: 1.6em; }
   .btn { padding: 6px 10px; font-size: 0.85em; }
   .table-users th, .table-users td { padding: 8px 10px; font-size: 0.85em; }
-}
-
-.spinner {
-  width: 24px;
-  height: 24px;
-  border: 3px solid var(--border-color);
-  border-top-color: var(--sidebar-active-bg);
-  border-radius: 50%;
-  margin: 2rem auto;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }

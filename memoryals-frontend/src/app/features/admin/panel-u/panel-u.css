@@ -4,8 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center; /* centra vertical y horizontal */
-  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
-  background-attachment: fixed;
   font-family: "Segoe UI", sans-serif;
   padding: 20px;
   box-sizing: border-box;

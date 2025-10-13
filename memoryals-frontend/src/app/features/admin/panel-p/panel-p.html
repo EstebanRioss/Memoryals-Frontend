@@ -1,10 +1,14 @@
-<div class="panel-container">
-  <h2 class="panel-title">Panel de Pagos</h2>
+<div class="profile-page">
+  <div class="profile-card">
+    <h2 class="section-title">Panel de Pagos</h2>
 
-  <div *ngIf="loading" class="spinner"></div>
-  <div *ngIf="error" class="alert error">{{ error }}</div>
+    <!-- Spinner de carga -->
+    <div *ngIf="loading" class="spinner"></div>
 
-    <!-- Filtro por nombre de usuario -->
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="alert error">{{ error }}</div>
+
+    <!-- Filtro por usuario -->
     <div class="filter-container">
       <input
         type="text"
@@ -14,33 +18,36 @@
       />
     </div>
 
-    <table *ngIf="pagosFiltrados.length" class="table-users">
-      <thead>
-        <tr>
-          <th>Usuario</th>
-          <th>Plan</th>
-          <th>Mes/Año</th>
-          <th>Monto</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let pago of pagosFiltrados">
-          <td>{{ pago.usuario?.nombre }}</td>
-          <td>{{ pago.plan?.nombre }}</td>
-          <td>{{ pago.mes }}/{{ pago.anio }}</td>
-          <td>{{ pago.monto | currency:'ARS' }}</td>
-          <td>{{ pago.estado }}</td>
-          <td class="actions">
-            <button class="btn btn-secondary" (click)="editarPago(pago)">Editar</button>
-            <button class="btn btn-secondary" (click)="eliminarPago(pago._id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- Tabla de pagos con scroll horizontal -->
+    <div class="table-wrapper">
+      <table *ngIf="pagosFiltrados.length > 0" class="table-users">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+            <th>Plan</th>
+            <th>Mes/Año</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pago of pagosFiltrados">
+            <td>{{ pago.usuario?.nombre || '-' }}</td>
+            <td>{{ pago.plan?.nombre || '-' }}</td>
+            <td>{{ pago.mes }}/{{ pago.anio }}</td>
+            <td>{{ pago.monto | currency:'ARS' }}</td>
+            <td>{{ pago.estado }}</td>
+            <td class="actions">
+              <button class="btn secondary" (click)="editarPago(pago)">Editar</button>
+              <button class="btn secondary" (click)="eliminarPago(pago._id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <!-- Mensaje si no hay pagos -->
     <div *ngIf="!loading && pagosFiltrados.length === 0" class="alert">
       No hay pagos registrados
     </div>
@@ -48,7 +55,7 @@
 </div>
 
 <!-- Modal de edición -->
-<div class="modal-overlay" [class.show]="modalVisible">
+<div class="modal" [class.show]="modalVisible" *ngIf="pagoSeleccionado">
   <div class="modal-content">
     <h3>Editar Pago</h3>
 
@@ -67,8 +74,8 @@
     </div>
 
     <div class="modal-actions">
-      <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
-      <button class="btn btn-primary" (click)="guardarPago()">Guardar</button>
+      <button class="btn secondary" (click)="cerrarModal()">Cancelar</button>
+      <button class="btn primary" (click)="guardarPago()">Guardar</button>
     </div>
   </div>
 </div>
