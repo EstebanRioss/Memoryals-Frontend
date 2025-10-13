@@ -129,3 +129,13 @@ h2 {
   background: #1e3922;
   transform: scale(1.02);
 }
+
+.error-message {
+  color: #d9534f;       /* rojo suave */
+  background-color: #f8d7da; /* fondo rosado claro */
+  padding: 6px 10px;    /* un poco de espacio alrededor */
+  border-radius: 4px;   /* esquinas redondeadas */
+  font-size: 0.9rem;    /* un poco más pequeño que el texto normal */
+  margin-top: 8px;
+  text-align: center;
+}

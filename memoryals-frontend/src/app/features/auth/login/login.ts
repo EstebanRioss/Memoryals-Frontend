@@ -50,7 +50,8 @@ export class Login {
         }
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || 'Error en el login';
+        // 🔹 Mostrar mensaje claro de credenciales incorrectas
+        this.errorMessage = '¡Credenciales incorrectas! Por favor, revisá tu email y contraseña.';
         this.loading = false;
       }
     });

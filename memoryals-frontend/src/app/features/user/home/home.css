@@ -1,15 +1,27 @@
+/* ==============================
+   VARIABLES DE COLOR
+============================== */
+:root {
+  --verde-claro: #6bbf59;
+  --verde-acento: #4caf50;
+  --verde-oscuro: #2f5233;
+  --gris: #f0f0f0;
+}
+
+/* ==============================
+   HERO CON VIDEO
+============================== */
 section.hero {
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 600px; /* Altura mínima para dispositivos muy pequeños */
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-/* Asegura que el contenedor del video ocupe todo el espacio */
 section.hero > div {
   position: absolute;
   top: 0;
@@ -18,13 +30,11 @@ section.hero > div {
   height: 100%;
 }
 
-/* Estilos específicos para el video */
 section.hero video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  /* Asegura que el video mantenga la relación de aspecto */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -36,6 +46,21 @@ section.hero video {
 .hero h1 {
   color: var(--verde-claro);
   text-shadow: 0 4px 24px rgba(35,66,63,0.18);
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: fadeInDown 1s ease forwards;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+  max-width: 900px;
+  line-height: 1.6;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  animation: fadeIn 1.5s ease forwards;
 }
 
 .hero a {
@@ -43,6 +68,8 @@ section.hero video {
   color: #fff;
   border-radius: 999px;
   font-weight: 700;
+  padding: 12px 24px;
+  display: inline-block;
   box-shadow: 0 6px 18px rgba(107,191,89,0.12);
   transition: background 0.3s, transform 0.3s;
 }
@@ -53,311 +80,151 @@ section.hero video {
   transform: translateY(-3px) scale(1.04);
 }
 
-.valor-card {
-  background-color: #fff;
-  padding: 2rem;
+/* ==============================
+   SECCIÓN DE VALORES / CARTAS
+============================== */
+section#valores {
+  background: linear-gradient(135deg, rgba(47, 82, 51, 0.1), rgba(107, 191, 89, 0.05));
+  padding: 5rem 1rem;
+  height: 100vh;
+}
+
+section#valores .valor-card {
+  background: #fff;
   border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease-in-out;
-  border: 2px solid transparent;
-  color: var(--gris);
+  padding: 2rem;
+  color: #23423f;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(38,70,45,0.06);
+  border: 1px solid rgba(46,139,87,0.12);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeInUp 0.7s ease forwards;
 }
 
-.valor-card h3 {
-  color: var(--verde-oscuro);
-  font-size: 1.5rem;
-  font-weight: 600;
+section#valores .valor-card h3 {
+  font-size: 1.6rem;
   margin-bottom: 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.valor-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 25px -5px rgba(47, 82, 51, 0.15), 0 10px 10px -5px rgba(47, 82, 51, 0.1);
+section#valores .valor-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #235133;
+}
+
+section#valores .valor-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 18px 34px rgba(38,70,45,0.12);
   border-color: var(--verde-claro);
 }
 
-/* Estilos para el carrusel de testimonios */
-#testimonios {
-  background-color: #f9f9f9;
-  padding: 4rem 0;
-  position: relative;
-  overflow: hidden;
+/* Animación flotante sutil */
+section#valores .valor-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(107,191,89,0.1) 0%, transparent 70%);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
 }
 
-.testimonial-swiper {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  position: relative;
+section#valores .valor-card:hover::before {
+  opacity: 1;
 }
 
-.swiper-wrapper {
-  padding: 20px 0 40px;
+/* Animaciones al aparecer */
+section#valores .valor-card {
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.swiper-slide {
-  width: 100%;
-  max-width: 380px;
-  height: auto;
-  margin: 0 auto;
-  padding: 0 10px;
-  box-sizing: border-box;
-  transition: transform 0.3s ease;
+section#valores .valor-card:nth-child(1) { animation-delay: 0.1s; }
+section#valores .valor-card:nth-child(2) { animation-delay: 0.2s; }
+section#valores .valor-card:nth-child(3) { animation-delay: 0.3s; }
+section#valores .valor-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.testimonial-card {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  height: 100%;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.testimonial-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #4a5568;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-  position: relative;
-}
-
-.testimonial-author {
-  font-weight: 600;
-  color: var(--verde-oscuro);
-  margin-top: 1rem;
-  display: block;
+/* ==============================
+   INFORMACIÓN EXTRA / ICONOS
+============================== */
+section#valores .extra-info {
+  margin-top: 3rem;
   text-align: center;
 }
 
-/* Estilos de navegación */
-.swiper-button-prev,
-.swiper-button-next {
-  color: var(--verde-oscuro);
-  background: rgba(255, 255, 255, 0.9);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  transform: translateY(-50%);
+section#valores .extra-info h4 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #23423f;
+  animation: fadeIn 1s ease forwards;
 }
 
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: var(--verde-claro);
-  color: white;
-}
-
-.swiper-button-prev {
-  left: 0;
-}
-
-.swiper-button-next {
-  right: 0;
-}
-
-/* Estilos de paginación */
-.swiper-pagination {
-  position: relative;
-  margin-top: 1rem;
-  bottom: 0;
-}
-
-.swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background: #cbd5e0;
-  opacity: 1;
-  margin: 0 5px;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  background: var(--verde-claro);
-  transform: scale(1.2);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .swiper-button-prev,
-  .swiper-button-next {
-    display: none;
-  }
-  
-  .testimonial-swiper {
-    padding: 0 15px;
-  }
-  
-  .swiper-slide {
-    padding: 0 5px;
-  }
-  
-  .testimonial-card {
-    padding: 20px;
-  }
-  
-  .testimonial-text {
-    font-size: 1rem;
-    color: #4a5568;
-    margin-bottom: 1.5rem;
-    font-style: italic;
-    position: relative;
-    padding: 0 1rem;
-  }
-}
-
-.testimonial-text::before,
-.testimonial-text::after {
-  content: '"';
-  font-size: 3rem;
-  color: var(--verde-claro);
-  opacity: 0.3;
-  position: absolute;
-  line-height: 1;
-}
-
-.testimonial-text::before {
-  top: -15px;
-  left: -5px;
-}
-
-.testimonial-text::after {
-  bottom: -30px;
-  right: -5px;
-}
-
-.testimonial-author {
-  font-weight: 600;
-  color: var(--verde-oscuro);
-  margin-top: 1.5rem;
+section#valores .extra-info p {
   font-size: 1.1rem;
-  position: relative;
-  display: inline-block;
-  padding-top: 1rem;
+  line-height: 1.6;
+  color: #1f3d2f;
+  animation: fadeIn 1.2s ease forwards;
 }
 
-.testimonial-author::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 2px;
-  background: var(--verde-claro);
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 1024px) {
+  section.hero h1 { font-size: 3rem; }
+  section.hero p { font-size: 1.3rem; }
+  section#valores { padding: 4rem 1rem; }
+  section#valores .valor-card h3 { font-size: 1.4rem; }
+  section#valores .valor-card p { font-size: 0.95rem; }
+  section#valores .extra-info h4 { font-size: 1.6rem; }
+  section#valores .extra-info p { font-size: 1rem; }
 }
 
-/* Estilos para la paginación */
-.swiper-pagination {
-  position: relative;
-  margin-top: 2rem;
-}
-
-.swiper-pagination-bullet {
-  width: 10px;
-  height: 10px;
-  background: #cbd5e0;
-  opacity: 1;
-  margin: 0 5px;
-  transition: all 0.3s ease;
-}
-
-.swiper-pagination-bullet-active {
-  background: var(--verde-claro);
-  transform: scale(1.2);
-}
-
-/* Navegación */
-.swiper-button-prev,
-.swiper-button-next {
-  color: var(--verde-oscuro);
-  width: 40px;
-  height: 40px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  background: var(--verde-claro);
-  color: white;
-}
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-/* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-  section.hero {
-    height: 90vh; /* Ajusta la altura para móviles */
-    min-height: 500px;
-  }
-  
-  .hero h1 {
-    font-size: 2.2rem; /* Tamaño de fuente ajustado para móviles */
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  
-  .hero p {
-    font-size: 1.1rem; /* Tamaño de fuente ajustado para móviles */
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
+  section.hero h1 { font-size: 2.5rem; }
+  section.hero p { font-size: 1.1rem; }
+  section#valores .valor-card { padding: 1.5rem; min-height: 180px; }
+  section#valores .valor-card h3 { font-size: 1.3rem; }
+  section#valores .valor-card p { font-size: 0.9rem; }
+}
 
-  .valor-card {
-    padding: 1.5rem; /* Slightly less padding for cards */
-  }
-
-  .valor-card h3 {
-    font-size: 1.2rem; /* Smaller font for card titles */
-  }
-
-  .testimonial-text {
-    font-size: 1rem; /* Smaller font for testimonial text */
-  }
-
-  .testimonial-author {
-    font-size: 0.9rem; /* Smaller font for testimonial author */
-  }
-
-  .swiper-button-prev,
-  .swiper-button-next {
-    width: 30px;
-    height: 30px;
-    font-size: 0.8rem; /* Smaller arrows */
-  }
-  
-  .swiper-slide {
-    max-width: 300px;
-  }
-  
-  .testimonial-card {
-    padding: 20px 15px;
-  }
-  
-  .testimonial-text {
-    font-size: 1rem;
-    padding: 0 0.5rem;
-  }
-  
-  .testimonial-text::before,
-  .testimonial-text::after {
-    font-size: 2rem;
-  }
+@media (max-width: 480px) {
+  section.hero h1 { font-size: 2rem; }
+  section.hero p { font-size: 1rem; }
+  section#valores { padding: 3rem 0.5rem; }
+  section#valores .valor-card { padding: 1rem; min-height: 160px; }
+  section#valores .valor-card h3 { font-size: 1.2rem; }
+  section#valores .valor-card p { font-size: 0.85rem; }
+  section#valores .extra-info h4 { font-size: 1.4rem; }
+  section#valores .extra-info p { font-size: 0.95rem; }
 }

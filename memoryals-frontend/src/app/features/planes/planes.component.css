@@ -1,29 +1,31 @@
 .planes-container {
-  max-width: 700px;
+  min-height: 80vh; /* Ocupa gran parte de la pantalla */
+  max-width: 900px; /* No demasiado ancho */
   margin: 48px auto;
   padding: 40px 32px;
-  background: linear-gradient(135deg, #fdfcf7 60%, #e8f5e1 100%);
+  background: linear-gradient(135deg, rgba(47,139,87,0.05) 0%, rgba(46,139,87,0.12) 100%);
   border-radius: 20px;
   box-shadow: 0 4px 32px rgba(47,82,51,0.08);
   text-align: center;
-  border: 1.5px solid #6bbf59;
+  border: 1.5px solid rgba(107,191,89,0.35);
   animation: fadeUp 0.7s cubic-bezier(.2,.9,.3,1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
+
+/* Títulos y descripción */
 .planes-container h1 {
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 18px;
   color: #23423f;
   letter-spacing: 1px;
 }
 .planes-container p {
-  color: #2f5233;
+  color: #23423f;
   font-size: 1.15rem;
   margin-bottom: 18px;
-}
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Simulador */
@@ -33,6 +35,7 @@
   justify-content: center;
   align-items: center;
   margin: 22px 0 28px;
+  flex-wrap: wrap;
 }
 .simulador label {
   font-weight: 600;
@@ -57,7 +60,7 @@
   box-shadow: 0 6px 18px rgba(46,139,87,0.12);
   transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
 }
-.simulador button:hover{ transform: translateY(-2px); }
+.simulador button:hover { transform: translateY(-2px); }
 .error { color: #b02a37; margin-top: 8px; font-weight:600 }
 
 /* Lista de planes */
@@ -70,7 +73,7 @@
 .plan-card {
   background: linear-gradient(180deg, #ffffff, #f7fff7);
   border-radius: 14px;
-  padding: 16px;
+  padding: 20px;
   text-align: left;
   border: 1px solid rgba(46,139,87,0.12);
   box-shadow: 0 8px 20px rgba(38,70,45,0.06);
@@ -89,12 +92,14 @@
 .plan-icon { color: #3a6b4f; margin-right:8px }
 .cell-icon { margin-right:6px; color:#2b513d; opacity:0.95 }
 
-/* small screens */
+/* Small screens */
 @media (max-width: 520px) {
-  .planes-container { padding: 20px 16px; margin: 20px auto }
+  .planes-container { 
+    padding: 20px 16px; 
+    margin: 20px auto; 
+  }
   .simulador { flex-direction: column; gap: 10px }
-  .simulador input[type="number"] { width: 100% }
-  .simulador button { width: 100% }
+  .simulador input[type="number"], .simulador button { width: 100% }
 }
 
 /* Cuotas chips */
@@ -115,7 +120,7 @@
 .arrow-down::before { content: ''; position:absolute; left:50%; top:45%; transform:translate(-50%,-50%); width:10px; height:10px; border-left:2px solid #2e8b57; border-bottom:2px solid #2e8b57; transform:translate(-50%,-50%) rotate(-45deg); animation: bounce 1s infinite }
 @keyframes bounce { 0%{ transform:translate(-50%,-50%) rotate(-45deg) translateY(0) } 50% { transform:translate(-50%,-50%) rotate(-45deg) translateY(6px) } 100% { transform:translate(-50%,-50%) rotate(-45deg) translateY(0) } }
 
-.memoryals-note { margin-top: 12px; display:flex; align-items:center; gap:12px }
+.memoryals-note { margin-top: 12px; display:flex; align-items:center; gap:12px; flex-wrap: wrap }
 .memoryals-note p { margin:0; color:#3a5f4a; font-weight:600 }
 .contact-btn {
   background: transparent; border: 1px solid #2e8b57; color:#2e8b57; padding:6px 10px; border-radius:8px; cursor:pointer; font-weight:700

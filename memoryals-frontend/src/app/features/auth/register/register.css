@@ -30,11 +30,9 @@
   position: relative;
   animation: fadeIn 0.6s ease;
   transition: all 0.4s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* separación vertical general */
 }
 
 /* ==============================
@@ -54,11 +52,6 @@
   color: #fdfcf7;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   animation: slideDown 0.7s ease;
-}
-
-@keyframes slideDown {
-  from { transform: translateY(-30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
 }
 
 /* ==============================
@@ -114,6 +107,73 @@ h3 {
   cursor: pointer;
   font-weight: 500;
 }
+
+/* Contenedor del checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Ocultar el checkbox original */
+.checkbox-group input[type="checkbox"] {
+  display: none;
+}
+
+/* Label para que sea clickeable */
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+  color: #23423f;
+  user-select: none;
+}
+
+/* Caja personalizada */
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2f5233;
+  border-radius: 6px;
+  background: white;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Efecto hover */
+.checkbox-group label:hover .custom-checkbox {
+  box-shadow: 0 0 5px rgba(47,82,51,0.4);
+  transform: scale(1.1);
+}
+
+/* Check visible cuando está marcado */
+.checkbox-group input[type="checkbox"]:checked + label .custom-checkbox::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 6px;
+  height: 12px;
+  border: solid #2f5233;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Link de términos */
+.checkbox-group a {
+  color: #2f5233;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.checkbox-group a:hover {
+  color: #1e3922;
+}
+
 
 /* ==============================
    BOTONES
@@ -172,7 +232,7 @@ h3 {
   padding: 12px 14px;
   border-radius: 8px;
   font-size: 14px;
-  margin-bottom: 25px; /* mayor separación */
+  margin-bottom: 25px; /* separación mayor para evitar superposición */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -223,6 +283,16 @@ h3 {
 }
 
 /* ==============================
+   PASO DE VERIFICACIÓN
+============================== */
+#code-step, .isCodeStep {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* mayor separación entre inputs y botones */
+  margin-top: 20px;
+}
+
+/* ==============================
    MENSAJE DE ÉXITO FINAL
 ============================== */
 .success-message {
@@ -234,6 +304,19 @@ h3 {
   background: #e8f5e1;
   border: 1px solid #a8c3a1;
   animation: fadeIn 0.6s ease;
+}
+
+/* ==============================
+   ANIMACIONES
+============================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 /* ==============================
@@ -252,6 +335,7 @@ h3 {
   .login-box {
     padding: 25px;
     width: 90%;
+    gap: 15px;
   }
 
   .avatar {
@@ -262,5 +346,11 @@ h3 {
 
   .btn-login {
     font-size: 14px;
+  }
+
+  .alert {
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 20px;
   }
 }

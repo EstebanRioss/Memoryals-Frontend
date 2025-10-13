@@ -23,6 +23,7 @@ export class Navbar implements OnInit, OnDestroy {
     // 🔹 Suscribirse a los cambios de usuario
     this.authSub = this.authService.currentUser$.subscribe((user) => {
       this.user = user;
+      console.log('Usuario actual:', user);
       if (!user) {
         // 🔹 cerrar menú y dropdown cuando se cierre sesión
         this.isMenuOpen = false;

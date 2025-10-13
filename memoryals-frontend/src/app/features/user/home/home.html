@@ -1,9 +1,20 @@
 <!-- Hero con video responsive -->
 <section class="relative w-full min-h-screen flex items-center justify-center text-center overflow-hidden">
-  <video #heroVideo autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover">
+  <video
+    #heroVideo
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="hero-fallback.jpg"
+    class="absolute top-0 left-0 w-full h-full object-cover"
+    onerror="this.style.display='none'"
+  >
     <source src="videoheroindex.mp4" type="video/mp4">
+    <img src="hero-fallback.jpg" alt="Imagen alternativa" class="w-full h-full object-cover"> <!-- fallback dentro del video -->
     Tu navegador no soporta videos HTML5.
   </video>
+
   <div class="absolute inset-0 bg-black/40"></div>
   <div class="relative z-10 flex flex-col items-center justify-center px-6 w-full">
     <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white drop-shadow-lg">¿Qué es Memoryals?</h1>
@@ -14,19 +25,39 @@
 </section>
 
 <!-- Sección de valores -->
-<section id="valores" class="py-20 bg-beige">
+<section id="valores" class="py-20 bg-beige valores">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 text-center">
     <div class="valor-card">
-      <h3>Planes accesibles</h3>
+      <h3>Planes accesibles <i class="fas fa-coins"></i></h3>
       <p>Opciones adaptadas a tus necesidades, pensadas para cada situación.</p>
     </div>
     <div class="valor-card">
-      <h3>Acompañamiento</h3>
+      <h3>Acompañamiento <i class="fas fa-hand-holding-heart"></i></h3>
       <p>Estamos a tu lado en los momentos más importantes de tu vida.</p>
     </div>
     <div class="valor-card">
-      <h3>Respaldo y confianza</h3>
+      <h3>Respaldo y confianza <i class="fas fa-shield-alt"></i></h3>
       <p>Brindamos seguridad y tranquilidad con cada servicio que ofrecemos.</p>
     </div>
+
+    <!-- Nuevos valores -->
+    <div class="valor-card">
+      <h3>Atención 24/7 <i class="fas fa-clock"></i></h3>
+      <p>Nuestro equipo está disponible en todo momento para consultas o emergencias.</p>
+    </div>
+    <div class="valor-card">
+      <h3>Asesoramiento personalizado <i class="fas fa-user-tie"></i></h3>
+      <p>Te ayudamos a elegir el plan más adecuado según la situación de tu familia.</p>
+    </div>
+    <div class="valor-card">
+      <h3>Transparencia total <i class="fas fa-eye"></i></h3>
+      <p>Toda la información de planes y costos es clara y sin letra pequeña.</p>
+    </div>
+  </div>
+
+  <!-- Subtítulo general -->
+  <div class="mt-12 text-center max-w-3xl mx-auto">
+    <h4 class="text-2xl font-semibold text-gray-800 mb-4">Memoryals: tu tranquilidad y la de tu familia es nuestra prioridad</h4>
+    <p class="text-gray-600 text-lg">Con planes flexibles y un acompañamiento humano, cuidamos de tu familia en cada etapa, ofreciendo seguridad y respaldo económico cuando más se necesita.</p>
   </div>
 </section>

@@ -33,7 +33,7 @@
         <!-- Selección de monto/cuotas -->
         <div *ngIf="selectedPlan">
           <h3>{{ selectedPlan.nombre }}</h3>
-          <p>Elegí la cantidad de cuotas:</p>
+          <p>Elegí el monto de las cuotas:</p>
 
           <div class="input-group">
             <select formControlName="Monto">
@@ -70,6 +70,15 @@
           <input type="text" placeholder="Teléfono" formControlName="telefono">
         </div>
 
+        <div class="input-group checkbox-group">
+          <input type="checkbox" formControlName="aceptaTerminos" id="aceptaTerminos">
+          <label for="aceptaTerminos">
+            <span class="custom-checkbox"></span>
+            Acepto los <a routerLink="/terminos" target="_blank">Términos y Condiciones</a>
+          </label>
+        </div>
+
+
         <button type="submit" class="btn-login" [disabled]="registerForm.invalid || (selectedPlan && !registerForm.get('Monto')?.value)">
           REGISTRARSE
         </button>
@@ -100,6 +109,8 @@
     <div *ngIf="isVerified">
       <h2>✅ Cuenta confirmada</h2>
       <p>Tu cuenta fue verificada correctamente.</p>
+      <br>
+      <br>
       <a routerLink="/login" class="btn-login">Iniciar sesión</a>
     </div>
   </div>

@@ -1,71 +1,128 @@
 :root {
-  --verde-oscuro: #2f5233;
+  --verde-oscuro: #23423f;
   --verde-claro: #6bbf59;
   --beige: #fdfcf7;
-  --negro: #000;
   --gris: #444;
-  --sombra: 0 6px 20px rgba(0,0,0,0.08);
-  --transicion: all 0.3s ease;
+  --negro: #000;
+  --sombra: 0 6px 20px rgba(0, 0, 0, 0.08);
+  --transicion: all 0.3s cubic-bezier(.2,.9,.3,1);
   --radius: 50%;
 }
 
 /* =========================
-   FOOTER
+   FOOTER GENERAL
 ========================= */
 footer {
-  background: var(--beige);
-  border-top: 1px solid #e0e0dc;
-  padding: 3rem 2rem 1rem;
+  background: linear-gradient(180deg, var(--beige) 70%, #f6fbf4 100%);
+  border-top: 2px solid var(--verde-claro);
+  padding: 4rem 2rem 1.5rem;
   font-family: 'Inter', sans-serif;
   color: var(--gris);
+  box-shadow: inset 0 3px 12px rgba(47,82,51,0.05);
+  animation: fadeUp 0.8s ease;
 }
 
-/* Contenedor principal */
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  animation: fadeUp 0.6s cubic-bezier(.2,.9,.3,1);
 }
 
-/* Brand */
+/* =========================
+   BRAND / LOGO
+========================= */
 .footer-brand img {
-  max-width: 120px;
+  max-width: 130px;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
+.footer-brand img:hover {
+  transform: scale(1.08) rotate(-3deg);
+  filter: brightness(1.1) drop-shadow(0 2px 6px var(--verde-claro));
+}
+
 .footer-brand p {
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--gris);
+  opacity: 0.9;
 }
 
-/* Links */
+/* =========================
+   LINKS
+========================= */
 .footer-links h4,
 .footer-contact h4,
 .footer-social h4 {
   color: var(--verde-oscuro);
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
 }
+
+.footer-links h4::after {
+  content: "";
+  display: block;
+  width: 35px;
+  height: 2px;
+  background: var(--verde-claro);
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.footer-links:hover h4::after {
+  width: 50px;
+}
+
 .footer-links ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
+
 .footer-links ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
+
 .footer-links a {
   text-decoration: none;
   color: var(--gris);
   transition: var(--transicion);
-}
-.footer-links a:hover {
-  color: var(--verde-claro);
-  padding-left: 5px;
+  font-size: 0.95rem;
+  position: relative;
 }
 
-/* Contacto */
+.footer-links a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background: var(--verde-claro);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::before {
+  width: 100%;
+}
+
+.footer-links a:hover {
+  color: var(--verde-claro);
+  transform: translateX(4px);
+}
+
+/* =========================
+   CONTACTO
+========================= */
 .footer-contact p {
   font-size: 0.9rem;
   margin-bottom: 0.4rem;
@@ -79,16 +136,20 @@ footer {
 
 .footer-contact a:hover {
   color: var(--verde-claro);
+  transform: translateX(3px);
 }
 
-/* Redes sociales */
+/* =========================
+   REDES SOCIALES
+========================= */
 .footer-social .social {
   display: flex;
   gap: 1rem;
 }
+
 .footer-social .social a {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,27 +159,54 @@ footer {
   color: var(--verde-oscuro);
   box-shadow: var(--sombra);
   transition: var(--transicion);
+  position: relative;
+  overflow: hidden;
 }
+
+.footer-social .social a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(107,191,89,0.2);
+  transition: left 0.4s ease;
+}
+
+.footer-social .social a:hover::after {
+  left: 0;
+}
+
 .footer-social .social a:hover {
   background: var(--verde-claro);
   color: #fff;
-  transform: translateY(-3px) scale(1.1);
+  transform: translateY(-3px) scale(1.08);
 }
 
-/* Línea inferior */
+/* =========================
+   LÍNEA INFERIOR
+========================= */
 .footer-bottom {
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-align: center;
   border-top: 1px solid #e0e0dc;
   padding-top: 1rem;
 }
+
 .footer-bottom p {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--gris);
+  opacity: 0.85;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom p:hover {
+  color: var(--verde-oscuro);
 }
 
 /* =========================
-   Responsive
+   RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
   .footer-container {
@@ -128,4 +216,15 @@ footer {
   .footer-social .social {
     justify-content: center;
   }
+  .footer-links a:hover {
+    transform: none;
+  }
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+@keyframes fadeUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }

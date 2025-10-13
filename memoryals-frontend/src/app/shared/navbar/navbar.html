@@ -31,7 +31,7 @@
       <!-- Si HAY usuario -->
       <div class="nav-actions user-dropdown" *ngIf="user">
         <button class="user-btn" (click)="toggleDropdown()">
-          👤 {{ user.nombre }}
+           {{ user.name }}
           <span class="arrow" [class.open]="isDropdownOpen">▼</span>
         </button>
           <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'cliente'">

@@ -20,6 +20,11 @@
       <button type="submit" class="btn-login">Iniciar sesión</button>
     </form>
 
+    <!-- 🔹 Mensaje de error -->
+    <div class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
     <!-- 🔹 Link a registro -->
     <p class="register-link">
       ¿No tenés cuenta?

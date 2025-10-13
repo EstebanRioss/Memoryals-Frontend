@@ -5,7 +5,17 @@
     <div *ngIf="loading" class="spinner"></div>
     <div *ngIf="error" class="alert error">{{ error }}</div>
 
-    <table *ngIf="pagos.length" class="table-users">
+    <!-- Filtro por nombre de usuario -->
+    <div class="filter-container">
+      <input
+        type="text"
+        placeholder="Filtrar por usuario"
+        [(ngModel)]="filtroUsuario"
+        (input)="aplicarFiltro()"
+      />
+    </div>
+
+    <table *ngIf="pagosFiltrados.length" class="table-users">
       <thead>
         <tr>
           <th>Usuario</th>
@@ -17,9 +27,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pago of pagos">
-          <td>{{ pago.usuario.nombre }}</td>
-          <td>{{ pago.plan.nombre }}</td>
+        <tr *ngFor="let pago of pagosFiltrados">
+          <td>{{ pago.usuario?.nombre }}</td>
+          <td>{{ pago.plan?.nombre }}</td>
           <td>{{ pago.mes }}/{{ pago.anio }}</td>
           <td>{{ pago.monto | currency:'ARS' }}</td>
           <td>{{ pago.estado }}</td>
@@ -31,7 +41,7 @@
       </tbody>
     </table>
 
-    <div *ngIf="!loading && pagos.length === 0" class="alert">
+    <div *ngIf="!loading && pagosFiltrados.length === 0" class="alert">
       No hay pagos registrados
     </div>
   </div>

@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class PanelU implements OnInit {
   usuarios: any[] = [];
+  usuariosFiltrados: any[] = [];
+  filtroNombre: string = '';
+
   loading: boolean = false;
   error: string = '';
   modalVisible: boolean = false;
@@ -33,6 +36,7 @@ export class PanelU implements OnInit {
     this.adminService.getUsuarios().subscribe({
       next: (res) => {
         this.usuarios = res;
+        this.aplicarFiltro(); // filtrar al cargar
         this.loading = false;
       },
       error: (err) => {
@@ -41,6 +45,22 @@ export class PanelU implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+  aplicarFiltro() {
+    const filtro = this.filtroNombre?.trim().toLowerCase();
+
+    if (!filtro) {
+      this.usuariosFiltrados = [...this.usuarios];
+    } else {
+      // Normalizamos el filtro y los nombres
+      const filtroNormalizado = filtro.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+      this.usuariosFiltrados = this.usuarios.filter(u => {
+        const nombreNormalizado = u.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        return nombreNormalizado.includes(filtroNormalizado);
+      });
+    }
   }
 
   eliminarUsuario(userId: string) {
@@ -52,19 +72,13 @@ export class PanelU implements OnInit {
   }
 
   editarUsuario(usuario: any) {
-    this.usuarioSeleccionado = { ...usuario }; // clonar objeto
+    this.usuarioSeleccionado = { ...usuario };
     this.modalVisible = true;
   }
 
   cerrarModal() {
     this.modalVisible = false;
-    // reiniciamos el objeto para no romper ngModel
-    this.usuarioSeleccionado = {
-      nombre: '',
-      email: '',
-      rol: '',
-      estado: ''
-    };
+    this.usuarioSeleccionado = { nombre: '', email: '', rol: '', estado: '' };
   }
 
   guardarUsuario() {
@@ -73,7 +87,7 @@ export class PanelU implements OnInit {
     this.adminService.updateUsuario(this.usuarioSeleccionado._id, this.usuarioSeleccionado)
       .subscribe({
         next: () => {
-          this.cargarUsuarios();  // ✅ actualiza lista
+          this.cargarUsuarios();
           this.cerrarModal();
         },
         error: (err) => console.error('Error actualizando usuario', err)

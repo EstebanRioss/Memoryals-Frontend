@@ -1,16 +1,16 @@
-/* Fondo general de la página */
+/* ====================== Fondo general de la página ====================== */
 .profile-page {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* centra vertical y horizontal */
   background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
   background-attachment: fixed;
   font-family: "Segoe UI", sans-serif;
-  overflow: hidden;
   padding: 20px;
   box-sizing: border-box;
   animation: fadeInPage 1s ease forwards;
+  position: relative;
 }
 
 @keyframes fadeInPage {
@@ -18,37 +18,38 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Card principal centrada */
+/* ====================== Card principal ====================== */
 .profile-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
   width: 1200px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
   overflow-y: auto;
   position: relative;
   transform: scale(0.95);
   opacity: 0;
   animation: cardPop 0.5s ease forwards 0.3s;
+  transition: all 0.4s ease;
 }
 
 @keyframes cardPop {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Título de sección */
+/* ====================== Título ====================== */
 .profile-card h2.section-title {
   font-size: 2em;
   font-weight: 700;
   color: #23423f;
   text-align: center;
-  margin-bottom: 15px;
-  text-shadow: 0 0 5px #23423f44;
-  opacity: 0;
+  margin-bottom: 20px;
+  text-shadow: 0 0 8px #23423f44;
   animation: titleSlide 0.5s ease forwards 0.5s;
+  opacity: 0;
 }
 
 @keyframes titleSlide {
@@ -56,7 +57,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Tabla de pagos */
+/* ====================== Tabla de usuarios ====================== */
 .table-users {
   width: 100%;
   border-collapse: collapse;
@@ -78,13 +79,24 @@
   font-weight: 600;
 }
 
+.table-users tr {
+  transition: all 0.25s ease;
+}
+
 .table-users tr:hover {
   background-color: rgba(47,82,51,0.15);
   transform: scale(1.01);
-  transition: all 0.2s ease;
 }
 
-/* Botones */
+.table-users tr td {
+  transition: all 0.3s ease;
+}
+
+.table-users tr:hover td {
+  transform: scale(1.02);
+}
+
+/* ====================== Botones ====================== */
 .btn {
   padding: 8px 15px;
   border-radius: 8px;
@@ -123,11 +135,24 @@
   box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
-/* Alertas */
-.alert {
-  padding: 10px;
+.filter-container {
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.filter-container input {
+  padding: 8px 12px;
   border-radius: 8px;
-  font-size: 13px;
+  border: 1px solid #a8c3a1;
+  font-size: 14px;
+  width: 200px;
+}
+
+/* ====================== Alertas ====================== */
+.alert {
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
   text-align: center;
   font-weight: 500;
   opacity: 0;
@@ -142,24 +167,30 @@
 .alert.error {
   background-color: rgba(255, 0, 0, 0.1);
   color: #900;
+  border: 1px solid #f5a1a1;
 }
 
-/* Spinner */
+.alert.success {
+  background-color: rgba(47, 82, 51, 0.2);
+  color: #2f5233;
+}
+
+/* ====================== Spinner ====================== */
 .spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #fff;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #2f5233;
   border-top-color: transparent;
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* Modal */
+/* ====================== Modal ====================== */
 .modal {
   position: fixed;
   top: 0;
@@ -219,14 +250,28 @@
   margin-top: 10px;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-  .profile-card { width: 95%; padding: 20px; }
+.modal-content h3 {
+  font-weight: 700;
+  color: #23423f;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* ====================== Responsive ====================== */
+@media (max-width: 1024px) {
+  .profile-card { width: 95%; padding: 25px; }
   .modal-content { width: 90%; padding: 20px; }
+}
+
+@media (max-width: 768px) {
+  .profile-card { width: 95%; padding: 20px; gap: 20px; }
+  .modal-content { width: 90%; padding: 20px; }
+  .btn { padding: 7px 12px; font-size: 0.9em; }
 }
 
 @media (max-width: 480px) {
   .profile-card { width: 95%; padding: 15px; gap: 15px; }
   .modal-content { width: 95%; padding: 15px; }
-  .btn { padding: 8px 10px; font-size: 0.9em; }
+  .btn { padding: 6px 10px; font-size: 0.85em; }
+  .table-users th, .table-users td { padding: 8px 10px; font-size: 0.85em; }
 }

@@ -43,8 +43,9 @@ export class Register {
       telefono: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],
       rol: ['cliente'],
-      planId: [null, Validators.required], // nuevo
-      Monto: [null, Validators.required]   // nuevo
+      planId: [null, Validators.required],
+      Monto: [null, Validators.required],
+      aceptaTerminos: [false, Validators.requiredTrue] // ✅ obligatorio
     });
 
     this.planService.getPlanes().subscribe({
@@ -63,11 +64,11 @@ export class Register {
     this.loading = true;
     this.errorMessage = '';
     this.successMessage = 'Cargando Datos ...';
-    console.log(this.registerForm.value);
-    const formValue = { ...this.registerForm.value };
-    formValue.Monto = Number(formValue.Monto); // convertir a número
 
-    this.authService.register(this.registerForm.value).subscribe({
+    const formValue = { ...this.registerForm.value };
+    formValue.Monto = Number(formValue.Monto);
+
+    this.authService.register(formValue).subscribe({
       next: (res: any) => {
         this.loading = false;
         this.successMessage = res.message || 'Registro exitoso. Revisa tu correo.';

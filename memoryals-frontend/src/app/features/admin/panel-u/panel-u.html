@@ -5,7 +5,18 @@
     <div *ngIf="loading" class="spinner"></div>
     <div *ngIf="error" class="alert error">{{ error }}</div>
 
-    <table *ngIf="usuarios.length" class="table-users">
+    <!-- Filtro -->
+    <div class="filter-container">
+      <input
+        type="text"
+        placeholder="Filtrar por nombre"
+        [(ngModel)]="filtroNombre"
+        (input)="aplicarFiltro()"
+      />
+    </div>
+
+    <!-- Tabla de usuarios filtrados -->
+    <table *ngIf="usuariosFiltrados.length" class="table-users">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -17,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let usuario of usuarios">
+        <tr *ngFor="let usuario of usuariosFiltrados">
           <td>{{ usuario.nombre }}</td>
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.rol }}</td>
@@ -31,7 +42,8 @@
       </tbody>
     </table>
 
-    <div *ngIf="!loading && usuarios.length === 0" class="alert">
+    <!-- Mensaje si no hay usuarios -->
+    <div *ngIf="!loading && usuariosFiltrados.length === 0" class="alert">
       No hay usuarios registrados
     </div>
   </div>
