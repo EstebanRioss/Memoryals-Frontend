@@ -37,6 +37,8 @@ export class Auth {
     telefono?: string;
     planId?: string;
     Monto?: number;
+    aceptaTerminos?: boolean;
+
   }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
