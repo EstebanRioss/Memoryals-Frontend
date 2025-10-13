@@ -65,3 +65,31 @@
   color: #fdfcf7;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
+
+/* Responsive: on small screens convert sidebar to top bar */
+@media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    border-radius: 0;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    box-shadow: none;
+  }
+
+  .sidebar-title { display: none; }
+
+  .sidebar-nav { flex-direction: row; gap: 8px; }
+
+  .sidebar-nav a { padding: 8px 10px; border-radius: 8px; }
+
+  /* ensure admin content stacks beneath the nav cleanly */
+  .sidebar + .admin-content, .sidebar + main, .admin-layout .admin-content { margin-top: 8px; }
+}

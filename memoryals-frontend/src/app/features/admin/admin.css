@@ -1,16 +1,36 @@
-.admin-layout {
-  display: flex;
-  min-height: calc(100vh - 60px); /* 100vh menos el alto del footer */
-  /* si tu footer tiene otro alto, ajusta este valor */
-  background: linear-gradient(135deg, #fdfcf7 0%, #e8f5e1 40%, #cfe8cf 100%);
+/* === Admin Layout V2 === */
+
+/* Variables de color para un tema consistente */
+:root{
+  --admin-bg:#f4f7f6;
+  --sidebar-bg:#23343b;
+  --sidebar-text:#eef3ee;
+  --sidebar-hover-bg:#2f5233;
+  --sidebar-active-bg:#2e8b57;
+  --text-primary:#173623;
+  --text-secondary:#566f58;
+  --border-color:#e6efe6;
+  --shadow-color:rgba(15,23,18,0.06);
+  --card-bg:#ffffff;
 }
 
-app-aside {
-  flex: 0 0 220px; /* ancho fijo para el aside */
-}
+.admin-layout{display:flex;min-height:100vh;background-color:var(--admin-bg);font-family:"Segoe UI",sans-serif}
+
+/* El componente <app-aside> se ajustará por su propio CSS */
 
 .admin-content {
   flex: 1;
-  padding: 20px;
+  padding: 2rem; /* Espaciado generoso */
   overflow-y: auto;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  .admin-content {
+    padding: 1.5rem;
+  }
 }
