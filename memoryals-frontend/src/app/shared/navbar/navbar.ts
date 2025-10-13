@@ -30,6 +30,9 @@ export class Navbar implements OnInit, OnDestroy {
         this.isDropdownOpen = false;
       }
     });
+    this.router.events.subscribe(() => {
+      this.isMenuOpen = false;
+    });
   }
 
   ngOnDestroy() {
@@ -48,4 +51,5 @@ export class Navbar implements OnInit, OnDestroy {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+  
 }

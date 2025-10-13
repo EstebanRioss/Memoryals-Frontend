@@ -1,0 +1,54 @@
+.planes-container {
+  min-height: 80vh;
+  max-width: 900px;
+  margin: 48px auto;
+  padding: 40px 32px;
+  background: #fdfcf7;
+  border-radius: 20px;
+  box-shadow: 0 4px 32px rgba(47,82,51,0.08);
+  text-align: left;
+  border: 1.5px solid rgba(107,191,89,0.35);
+  animation: fadeUp 0.7s cubic-bezier(.2,.9,.3,1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #23423f;
+}
+
+.planes-container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #23423f;
+  text-align: center;
+}
+
+.planes-container h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #2b513d;
+}
+
+.planes-container p, .planes-container li {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.planes-container ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+.cuotas-container { margin-top: 10px }
+.cuotas-title { font-weight: 700; color: #2b513d; margin-bottom: 6px }
+.cuotas-list { margin-top:6px; overflow:auto }
+.cuotas-table { border-collapse: collapse; width:100%; }
+.cuotas-table thead th { text-align:left; padding:8px 10px; color:#23423f; font-weight:700 }
+.cuotas-table tbody td { padding:8px 10px; border: 1px solid rgba(46,139,87,0.12); }
+.cuotas-table tbody tr td.cell-qty { background: linear-gradient(180deg,#e9f7ea,#dff3dd); color:#155032; font-weight:700; width:110px }
+.cuotas-table tbody tr td.cell-amount { background: linear-gradient(180deg,#f7fff7,#effff0); color:#184b35; font-weight:600 }
+.cuotas-table tbody tr:hover td { filter:brightness(0.98) }
+
+.memoryals-note { margin-top: 12px; display:flex; align-items:center; gap:12px; flex-wrap: wrap; font-weight:600 }

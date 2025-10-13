@@ -14,20 +14,18 @@
 section.hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 600px;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 section.hero > div {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 }
 
 section.hero video {
@@ -39,27 +37,31 @@ section.hero video {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 1rem;
 }
 
 .hero h1 {
   color: var(--verde-claro);
-  text-shadow: 0 4px 24px rgba(35,66,63,0.18);
-  font-size: 4rem;
+  text-shadow: 0 4px 24px rgba(35, 66, 63, 0.18);
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   margin-bottom: 1rem;
-  text-align: center;
   animation: fadeInDown 1s ease forwards;
 }
 
 .hero p {
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   color: #fff;
-  text-align: center;
-  max-width: 900px;
   line-height: 1.6;
-  text-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  margin-bottom: 1.5rem;
   animation: fadeIn 1.5s ease forwards;
 }
 
@@ -68,10 +70,11 @@ section.hero video {
   color: #fff;
   border-radius: 999px;
   font-weight: 700;
-  padding: 12px 24px;
+  padding: 12px 28px;
   display: inline-block;
-  box-shadow: 0 6px 18px rgba(107,191,89,0.12);
+  box-shadow: 0 6px 18px rgba(107, 191, 89, 0.12);
   transition: background 0.3s, transform 0.3s;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
 }
 
 .hero a:hover {
@@ -85,8 +88,21 @@ section.hero video {
 ============================== */
 section#valores {
   background: linear-gradient(135deg, rgba(47, 82, 51, 0.1), rgba(107, 191, 89, 0.05));
-  padding: 5rem 1rem;
-  height: 100vh;
+  padding: clamp(3rem, 8vw, 5rem) 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
 
 section#valores .valor-card {
@@ -95,41 +111,38 @@ section#valores .valor-card {
   padding: 2rem;
   color: #23423f;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(38,70,45,0.06);
-  border: 1px solid rgba(46,139,87,0.12);
+  box-shadow: 0 8px 20px rgba(38, 70, 45, 0.06);
+  border: 1px solid rgba(46, 139, 87, 0.12);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   position: relative;
   overflow: hidden;
-  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   animation: fadeInUp 0.7s ease forwards;
-}
-
-section#valores .valor-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-section#valores .valor-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #235133;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 section#valores .valor-card:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 18px 34px rgba(38,70,45,0.12);
+  box-shadow: 0 18px 34px rgba(38, 70, 45, 0.12);
   border-color: var(--verde-claro);
 }
 
-/* Animación flotante sutil */
+section#valores .valor-card h3 {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+section#valores .valor-card p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.6;
+  color: #235133;
+}
+
+/* Efecto flotante */
 section#valores .valor-card::before {
   content: '';
   position: absolute;
@@ -137,7 +150,7 @@ section#valores .valor-card::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(107,191,89,0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(107, 191, 89, 0.1) 0%, transparent 70%);
   transform: rotate(45deg);
   opacity: 0;
   transition: opacity 0.8s ease;
@@ -149,41 +162,38 @@ section#valores .valor-card:hover::before {
 }
 
 /* Animaciones al aparecer */
-section#valores .valor-card {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
 section#valores .valor-card:nth-child(1) { animation-delay: 0.1s; }
 section#valores .valor-card:nth-child(2) { animation-delay: 0.2s; }
 section#valores .valor-card:nth-child(3) { animation-delay: 0.3s; }
 section#valores .valor-card:nth-child(4) { animation-delay: 0.4s; }
 
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInDown {
-  0% { opacity: 0; transform: translateY(-30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ==============================
    INFORMACIÓN EXTRA / ICONOS
 ============================== */
 section#valores .extra-info {
-  margin-top: 3rem;
   text-align: center;
+  max-width: 800px;
+  margin: 2rem auto 0;
+  padding: 0 1rem;
 }
 
 section#valores .extra-info h4 {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 700;
   margin-bottom: 1rem;
   color: #23423f;
@@ -191,40 +201,25 @@ section#valores .extra-info h4 {
 }
 
 section#valores .extra-info p {
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
   line-height: 1.6;
   color: #1f3d2f;
   animation: fadeIn 1.2s ease forwards;
 }
 
 /* ==============================
-   RESPONSIVE
+   MEDIA QUERIES EXTRA FINAS
 ============================== */
-@media (max-width: 1024px) {
-  section.hero h1 { font-size: 3rem; }
-  section.hero p { font-size: 1.3rem; }
-  section#valores { padding: 4rem 1rem; }
-  section#valores .valor-card h3 { font-size: 1.4rem; }
-  section#valores .valor-card p { font-size: 0.95rem; }
-  section#valores .extra-info h4 { font-size: 1.6rem; }
-  section#valores .extra-info p { font-size: 1rem; }
+@media (max-height: 600px) and (orientation: landscape) {
+  section.hero {
+    min-height: 70vh;
+  }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
 }
 
-@media (max-width: 768px) {
-  section.hero h1 { font-size: 2.5rem; }
-  section.hero p { font-size: 1.1rem; }
-  section#valores .valor-card { padding: 1.5rem; min-height: 180px; }
-  section#valores .valor-card h3 { font-size: 1.3rem; }
-  section#valores .valor-card p { font-size: 0.9rem; }
-}
-
-@media (max-width: 480px) {
-  section.hero h1 { font-size: 2rem; }
-  section.hero p { font-size: 1rem; }
-  section#valores { padding: 3rem 0.5rem; }
-  section#valores .valor-card { padding: 1rem; min-height: 160px; }
-  section#valores .valor-card h3 { font-size: 1.2rem; }
-  section#valores .valor-card p { font-size: 0.85rem; }
-  section#valores .extra-info h4 { font-size: 1.4rem; }
-  section#valores .extra-info p { font-size: 0.95rem; }
+@media (max-width: 380px) {
+  .hero a {
+    padding: 10px 18px;
+  }
 }

@@ -10,6 +10,7 @@ import { Admin } from './features/admin/admin';
 import { PanelU } from './features/admin/panel-u/panel-u';
 import { PanelP } from './features/admin/panel-p/panel-p';
 import { General } from './features/admin/general/general';
+import { Terminos } from './features/terminos/terminos';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'mi-cuenta/:id', component: Micuenta },
   { path: 'mis-cuotas/:id', component: Micuota },
+  { path: 'terminos', component: Terminos},
   {
     path: 'admin',
     component: Admin,   // layout que contiene el aside

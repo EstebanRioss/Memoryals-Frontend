@@ -299,3 +299,70 @@ nav {
     opacity: 1;
   }
 }
+/* =========================================
+   ICONO FLECHA PARA CERRAR MENÚ
+========================================= */
+.arrow-right {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-right: 3px solid var(--verde-oscuro);
+  border-bottom: 3px solid var(--verde-oscuro);
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle.active .arrow-right {
+  transform: rotate(45deg);
+}
+
+.menu-toggle .arrow-right:hover {
+  transform: rotate(0deg) scale(1.1);
+}
+/* =========================================
+   FLECHA PARA CERRAR MENÚ EN MÓVIL
+========================================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100; /* encima del menú */
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.menu-toggle span {
+  width: 26px;
+  height: 3px;
+  background: var(--verde-oscuro);
+  border-radius: 2px;
+  transition: var(--transicion);
+}
+
+/* FLECHA (→) visible cuando se abre el menú */
+.menu-toggle .arrow-right {
+  width: 16px;
+  height: 16px;
+  border-top: 3px solid var(--verde-oscuro);
+  border-right: 3px solid var(--verde-oscuro);
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+/* En hover se anima un poquito */
+.menu-toggle .arrow-right:hover {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .menu-toggle {
+    display: flex;
+  }
+}
+

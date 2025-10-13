@@ -9,43 +9,50 @@
     </div>
 
     <!-- Menú toggle (mobile) -->
-    <div class="menu-toggle" id="menu-toggle" (click)="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="menu-toggle" id="menu-toggle" [class.active]="isMenuOpen" (click)="toggleMenu()">
+      <!-- Ícono hamburguesa -->
+      <ng-container *ngIf="!isMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </ng-container>
+      <!-- Flecha cuando está abierto -->
+      <ng-container *ngIf="isMenuOpen">
+        <span class="arrow-right"></span>
+      </ng-container>
     </div>
 
-    <!-- Links + Login/Usuario -->
+    <!-- Menú -->
     <div class="nav-right" [class.show]="isMenuOpen">
       <div class="nav-links">
-  <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
-  <a routerLink="/planes" routerLinkActive="active">Planes</a>
-  <a routerLink="/sobre-nosotros" routerLinkActive="active">Sobre Nosotros</a>
+        <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+        <a routerLink="/planes" routerLinkActive="active">Planes</a>
+        <a routerLink="/sobre-nosotros" routerLinkActive="active">Sobre Nosotros</a>
       </div>
 
       <!-- Si NO hay usuario -->
       <div class="nav-actions" *ngIf="!user">
-        <a routerLink="/login" routerLinkActive="active" class="btn-login">Login</a>
+        <a routerLink="/login" routerLinkActive="active" class="btn-login">Iniciar Sesion</a>
       </div>
 
       <!-- Si HAY usuario -->
       <div class="nav-actions user-dropdown" *ngIf="user">
         <button class="user-btn" (click)="toggleDropdown()">
-           {{ user.name }}
+          {{ user.name }}
           <span class="arrow" [class.open]="isDropdownOpen">▼</span>
         </button>
-          <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'cliente'">
-            <!-- Enviamos el id del usuario en la ruta -->
-            <li><a [routerLink]="['/mi-cuenta', user._id]">Mi cuenta</a></li>
-            <li><a [routerLink]="['/mis-cuotas', user._id]">Mis cuotas</a></li>
-            <li><a (click)="logout()">Salir</a></li>
-          </ul>
-          <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'admin'">
-            <li><a [routerLink]="['/admin']">Panel de Administración</a></li>
-            <li><a (click)="logout()">Salir</a></li>
-          </ul>
+        <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'cliente'">
+          <li><a [routerLink]="['/mi-cuenta', user._id]">Mi cuenta</a></li>
+          <li><a [routerLink]="['/mis-cuotas', user._id]">Mis cuotas</a></li>
+          <li><a (click)="logout()">Salir</a></li>
+        </ul>
+        <ul class="dropdown-menu" [class.show]="isDropdownOpen" *ngIf="user?.rol === 'admin'">
+          <li><a [routerLink]="['/admin']">Panel de Administración</a></li>
+          <li><a (click)="logout()">Salir</a></li>
+        </ul>
       </div>
     </div>
 
   </div>
 </nav>
+
