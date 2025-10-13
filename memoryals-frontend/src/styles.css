@@ -20,7 +20,7 @@
 body {
   font-family: 'Inter', sans-serif;
   /* Fondo distinguido tipo beige elegante */
-  background: linear-gradient(135deg, var(--beige-claro) 0%, var(--beige) 50%, var(--verde-claro) 100%);
+  background: #fdfcf7;
   color: var(--negro);
   min-height: 100vh;
   background-attachment: fixed;
