@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
+import { Auth } from '../usuario/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,10 @@ import { Observable } from 'rxjs';
 export class admin{
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: Auth) {}
 
   private getAuthHeaders() {
-    const token = localStorage.getItem('token'); // token guardado al hacer login
+    const token = this.auth.getToken(); // token guardado al hacer login
     return { headers: new HttpHeaders({ Authorization: `Bearer ${token}` }) };
   }
 

@@ -38,7 +38,6 @@ export class Auth {
     planId?: string;
     Monto?: number;
     aceptaTerminos?: boolean;
-
   }): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
@@ -56,10 +55,11 @@ export class Auth {
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }).pipe(
       tap(res => {
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('name', res.name);
-        localStorage.setItem('rol', res.rol);
-        localStorage.setItem('id', res.id);
+        // 🔁 Guardar datos en sessionStorage
+        sessionStorage.setItem('token', res.token);
+        sessionStorage.setItem('name', res.name);
+        sessionStorage.setItem('rol', res.rol);
+        sessionStorage.setItem('id', res.id);
 
         this.authStatus.next(true);
         this.currentUserSubject.next({
@@ -76,10 +76,10 @@ export class Auth {
   // 🔹 Logout
   // ----------------------
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('name');
-    localStorage.removeItem('rol');
-    localStorage.removeItem('id');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('name');
+    sessionStorage.removeItem('rol');
+    sessionStorage.removeItem('id');
 
     this.authStatus.next(false);
     this.currentUserSubject.next(null);
@@ -89,19 +89,19 @@ export class Auth {
   // 🔹 Token & headers
   // ----------------------
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   getId(): string | null {
-    return localStorage.getItem('id');
+    return sessionStorage.getItem('id');
   }
 
   getUserName(): string | null {
-    return localStorage.getItem('name');
+    return sessionStorage.getItem('name');
   }
 
   getUserRole(): string | null {
-    return localStorage.getItem('rol');
+    return sessionStorage.getItem('rol');
   }
 
   isAuthenticated$(): Observable<boolean> {
@@ -109,14 +109,14 @@ export class Auth {
   }
 
   private hasToken(): boolean {
-    return !!localStorage.getItem('token');
+    return !!sessionStorage.getItem('token');
   }
 
   private getStoredUser() {
-    const token = localStorage.getItem('token');
-    const name = localStorage.getItem('name');
-    const rol = localStorage.getItem('rol');
-    const id = localStorage.getItem('id');
+    const token = sessionStorage.getItem('token');
+    const name = sessionStorage.getItem('name');
+    const rol = sessionStorage.getItem('rol');
+    const id = sessionStorage.getItem('id');
     return token ? { name, rol, token, id } : null;
   }
 

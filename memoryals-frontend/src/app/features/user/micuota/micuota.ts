@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pagos } from '../../../core/services/usuario/pagos';
 import { CommonModule } from '@angular/common';
 import { Qr } from '../../../core/services/usuario/qr';
+import { Auth } from '../../../core/services/usuario/auth';
 @Component({
   selector: 'app-micuota',
   imports: [CommonModule],
@@ -15,10 +16,10 @@ export class Micuota implements OnInit {
   pagoLink: string = '';
   mostrarQr: boolean = false;
 
-  constructor(private pagosService: Pagos , private qr : Qr) {}
+  constructor(private pagosService: Pagos , private qr : Qr,private auth : Auth) {}
 
   ngOnInit() {
-    const userId = localStorage.getItem('id'); // o desde tu auth
+    const userId = this.auth.getId(); // o desde tu auth
     if (userId) {
       this.cargarPagos(userId);
     }
@@ -26,18 +27,26 @@ export class Micuota implements OnInit {
 
   // Carga pagos del usuario y define el pendiente actual
   private cargarPagos(userId: string) {
-    this.pagosService.getPagosUsuario(userId).subscribe({
-      next: pagos => {
-        this.pagos = pagos;
-        this.pagoActual = pagos.find((p: { estado: string; }) => p.estado === 'pendiente');
-      },
-      error: err => console.error('Error al obtener pagos', err)
-    });
-  }
+  this.pagosService.getPagosUsuario(userId).subscribe({
+    next: pagos => {
+      this.pagos = pagos;
+
+      // Filtrar los pagos pendientes
+      const pagosPendientes = pagos
+        .filter((p: { estado: string }) => p.estado === 'pendiente')
+        // Ordenar de más antiguo a más nuevo (ascendente)
+        .sort((a: any, b: any) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+
+      // Tomar el más antiguo (primero)
+      this.pagoActual = pagosPendientes.length > 0 ? pagosPendientes[0] : null;
+    },
+    error: err => console.error('Error al obtener pagos', err)
+  });
+}
 
   // Genera el link de pago y abre MercadoPago
   pagar(pago: any) {
-    const userId = localStorage.getItem('id');
+    const userId = this.auth.getId();
     if (!userId) return;
 
     this.pagosService.generarLinkPago(userId).subscribe({
