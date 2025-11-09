@@ -11,9 +11,9 @@ export class Pagos {
 
   constructor(private http: HttpClient) {}
 
-  // Encabezados con token
+  // Encabezados con token desde sessionStorage
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token'); // token guardado al loguear
+    const token = sessionStorage.getItem('token'); // token guardado al loguear
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
